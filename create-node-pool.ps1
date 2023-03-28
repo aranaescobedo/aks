@@ -45,8 +45,8 @@ az aks nodepool add `
     --resource-group $aksResourceGroup `
     --cluster-name $aksName `
     --name $nodePoolName `
-    --node-count 1 `
     --enable-cluster-autoscaler `
+    --node-count 1 `
     --min-count 1 `
     --max-count 2 `
     --kubernetes-version $aksVersion `
