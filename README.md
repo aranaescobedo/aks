@@ -1,8 +1,8 @@
 # AKS (Azure Kubernetes Service)
-This folder contains scripts that are used to interact with Azure Container Registry (ACR).
+This folder contains scripts that are used to interact with Azure Kubernetes Service (AKS).
 
 ## Usage
-Each script in this folder is designed to perform a specific task with ACR. Before running a script, make sure to replace any placeholders with your own information.
+Each script in this folder is designed to perform a specific task with AKS. Before running a script, make sure to replace any placeholders with your own information.
 
 ## Script Descriptions
 
