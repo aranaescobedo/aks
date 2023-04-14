@@ -28,8 +28,8 @@ param(
     [string]
     $vmSize,
     [Parameter(Mandatory = $true)]
-    [string]
-    [ValidateSet("1", "1 2", "1 2 3")]
+    [int[]]
+    [ValidateSet(1, 2, 3)]
     $zones
 )
 
@@ -56,3 +56,12 @@ az aks nodepool add `
     --node-vm-size $vmSize `
     --vnet-subnet-id $subnetId `
     --zones $zones
+
+$nodePoolStatus = (az aks nodepool show `
+    --resource-group $aksResourceGroup `
+    --cluster-name $aksName `
+    --name $nodePoolName `
+    --query 'provisioningState' `
+    --output tsv)
+
+"[*] Provisioning state: $nodePoolStatus"
