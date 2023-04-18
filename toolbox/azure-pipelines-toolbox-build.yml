@@ -10,7 +10,7 @@ variables:
   agent: <AGENT_NAME>
   containerRegistry: <ACR_NAME>
   dockerfilePath: 'toolbox/Dockerfile'
-  dockerRegistryServiceConnection: <ACR_SERVICE_CONNECTION>
+  dockerRegistryServiceConnection: <ACR_SERVICE_CONNECTION_NAME>
   imageRepository: 'toolbox'
   imageTag: '$(Build.BuildNumber)'
 
