@@ -1,0 +1,38 @@
+name: 1.0.$(Rev:r)
+
+trigger:
+- none
+
+resources:
+- repo: self
+
+variables:
+  agent: <AGENT_NAME>
+  containerRegistry: <ACR_NAME>
+  dockerfilePath: 'toolbox/Dockerfile'
+  dockerRegistryServiceConnection: <ACR_SERVICE_CONNECTION>
+  imageRepository: 'toolbox'
+  imageTag: '$(Build.BuildNumber)'
+
+pool: $(agent)
+
+stages:
+- stage: Build
+  displayName: Build stage
+  jobs:  
+  - job: Build
+    displayName: Build
+    steps:
+    - task: Docker@2
+      displayName: Build and push an image to azure container registry
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(imageRepository)'
+        command: 'buildAndPush'
+        Dockerfile: '$(dockerfilePath)'
+        tags: | 
+          $(imageTag)
+          latest
+
+    - upload: manifests
+      artifact: manifests
