@@ -14,9 +14,10 @@ resources:
 
 variables:
   agent: <AGENT_NAME>
-  containerRegistry: <ACR_NAME>
+  containerRegistry: <ACR_LOGIN_SERVER_NAME>
   imageRepository: toolbox
   imageTag: '$(Build.BuildNumber)'
+  imageURL: $(containerRegistry)/$(containerRegistry)
   kubernetesServiceConnection: <AKS_SERVICE_CONNECTION_NAME>
   namespace: <NAMESPACE_NAME>
 
@@ -43,4 +44,4 @@ stages:
               manifests: |
                 $(Pipeline.Workspace)/manifests/toolbox.yml
               containers: |
-                $(containerRegistry)/$(imageRepository):latest
+                $(imageURL):latest
