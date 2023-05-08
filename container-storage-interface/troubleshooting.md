@@ -1,4 +1,4 @@
-# 🕵️ Troubleshooting
+# 🕵️ Troubleshoot Container Storage Interface (CSI)
 
 - AttachVolume.Attach failed for volume "<PVC_NAME>" : timed out waiting for external-attacher of disk2.csi.azure.com CSI driver to attach volume /subscriptions/<SUB_NAME>/<RSG_NAME>/providers/Microsoft.Compute/disks/<DISK_NAME>
 
@@ -6,5 +6,12 @@
   - If you are using your own Disk Encryption Set to mount on your cluster you need to make sure that the cluster identity has read permission.
   - Check also that the cluster identity has Contributor permission on the disk
   - This issues is more often to accure when your not creating the **disk** or **disk encryption sett** inside the cluster node resurs group that is created automatically by Azure when you create a AKS.
+
+
+- If your pvc (persistant volume claim or pv (persistant volume) is stuck in Terminating state after deleted.
+  - Before you delete pvc or pv make sure that you don´t have any pods that are trying to use the pvc.
+  - If you are stil having issues with the Terminating state is stuck you can run the follow commands:
+     - ```kubectl patch pvc <PVC_NAME> -p '{"metadata":{"finalizers":null}}' -n <NAMESPACE_NAME>```
+     - ``` kubectl patch pv <PV_NAME> -p '{"metadata":{"finalizers":null}}'```
 
 
