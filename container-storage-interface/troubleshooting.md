@@ -2,7 +2,7 @@
 This README contains a collection of solutions for common troubleshooting scenarios that may arise when using CSI on AKS.
 
 ## **If you are encountering the error messages**:
-  -  ```AttachVolume.Attach failed for volume "<PVC_NAME>" : timed out waiting for external-attacher of disk2.csi.azure.com CSI driver to attach volume /subscriptions/<SUB_NAME>/<RSG_NAME>/providers/Microsoft.Compute/disks/<DISK_NAME>``` **or**
+  -  ```Unable to attach or mount volumes: unmounted volumes=[pvc-volume], unattached volumes=[kube-api-access-k26b8 azure-identity-token secrets-store-inline secrets-store-inline-db pvc-volume]: timed out waiting for the condition``` **or**
   - ```AttachVolume.Attach failed for volume "<PVC_NAME>" : timed out waiting for external-attacher of disk2.csi.azure.com CSI driver to attach volume /subscriptions/<SUB_NAME>/<RSG_NAME>/providers/Microsoft.Compute/disks/<DISK_NAME>"``` 
 - **while trying to attach a volume to your AKS cluster, it may be due to a permission issue.**
   - If you are using your own **disk encryption set** to mount on your cluster, you need to ensure that the cluster identity has **Read permission**. Additionally, you need to make sure that the cluster identity has **Contributor permission** on the **disk**.
