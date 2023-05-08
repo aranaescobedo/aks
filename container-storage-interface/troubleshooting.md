@@ -1,4 +1,5 @@
 # 🕵️ Troubleshoot Container Storage Interface (CSI)
+This README contains a collection of solutions for common troubleshooting scenarios that may arise when using CSI on AKS.
 
 - **If you are encountering the error message**:
   -  ```AttachVolume.Attach failed for volume "<PVC_NAME>" : timed out waiting for external-attacher of disk2.csi.azure.com CSI driver to attach volume /subscriptions/<SUB_NAME>/<RSG_NAME>/providers/Microsoft.Compute/disks/<DISK_NAME>``` **or**
