@@ -12,7 +12,9 @@ This README contains a collection of solutions for common troubleshooting scenar
 - Ensure that there are no pods using the PVC before deleting it.
 
 - If you are still having issues with the Terminating state being stuck even after deleting all pods that are using the PVC, you can use the following commands:
-  - ```kubectl patch pvc <PVC_NAME> -p '{"metadata":{"finalizers":null}}' -n <NAMESPACE_NAME>```
-  - ``` kubectl patch pv <PV_NAME> -p '{"metadata":{"finalizers":null}}'```
+  - ```powershell
+    kubectl patch pvc <PVC_NAME> -p '{"metadata":{"finalizers":null}}' -n <NAMESPACE_NAME>
+    kubectl patch pv <PV_NAME> -p '{"metadata":{"finalizers":null}}'
+    ```
 
 
