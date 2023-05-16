@@ -11,7 +11,7 @@ This README contains a collection of solutions for common troubleshooting scenar
   - **Ensure that the SecretProviderClass YAML file contains a valid ClientID and is not empty or has the wrong value.**
 
 ### 403
--  ```error: code = Unknown desc = failed to mount objects, error: failed to get objectType:secret, objectName:application-insight-connection-string, objectVersion:: keyvault.BaseClient#GetSecret: Failure responding to request: StatusCode=403 -- Original Error: autorest/azure: Service returned an error. Status=403 Code="Forbidden" Message="Client address is not authorized and caller is not a trusted service.\r\nClient address: <IP_ADDRESS> from unknown subnet\ r\nVault: <KEY_VAULT_NAME>;location=westeurope" InnerError={"code":"ForbiddenByFirewall"}```
+-  ```error: code = Unknown desc = failed to mount objects, error: failed to get objectType:secret, objectName:<SECRETNAME>, objectVersion:: keyvault.BaseClient#GetSecret: Failure responding to request: StatusCode=403 -- Original Error: autorest/azure: Service returned an error. Status=403 Code="Forbidden" Message="Client address is not authorized and caller is not a trusted service.\r\nClient address: <IP_ADDRESS> from unknown subnet\ r\nVault: <KEY_VAULT_NAME>;location=westeurope" InnerError={"code":"ForbiddenByFirewall"}```
 
    -  **You may need to add your cluster's virtual network to your Key Vault network to establish connectivity.**
 
