@@ -9,3 +9,6 @@ kubectl top pods -n <NAMESPACE_NAME>
 
 #Provides detailed information about a node in the Kubernetes cluster, including its labels, capacity, usage, conditions, and other relevant details.
 kubectl describe node <NODE_NAME>
+
+#Is a fully qualified domain name (FQDN) convention used in Kubernetes to access a service within the same cluster.
+<service-name>.<service-namespace>.svc.cluster.local
