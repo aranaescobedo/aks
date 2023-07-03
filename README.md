@@ -1,5 +1,8 @@
-# AKS (Azure Kubernetes Service)
-This folder contains scripts that are used to interact with Azure Kubernetes Service (AKS).
+<p align="center">
+ <img width="100px" src=".images/azure-kubernetes-services.svg" align="center" alt="Azure Kubernetes Service" />
+ <h2 align="center">Azure Kubernetes Service(AKS)</h2>
+ <p align="center">This repository contains scripts that are used to interact with Azure Kubernetes Service (AKS).</p>
+</p>
 
 ## Prerequisites
 
