@@ -45,6 +45,9 @@ kubectl apply -f <FILEPATH>/<FILE_NAME> -f <FILEPATH>/<FILE_NAME>
 #Get deployments.
 kubectl get deployments -n <NAMESPACE_NAME>
 
+#Delete deployment (pod included)
+kubectl delete deploy <DEPLOYMENT_NAME> -n <NAMESPACE_NAME>
+
 #Get pods.
 kubectl get pods -n <NAMESPACE_NAME>
 
@@ -54,17 +57,14 @@ kubectl describe pods <POD_NAME> -n <NAMESPACE_NAME>
 #Check logs.
 kubectl logs podName -n <NAMESPACE_NAME>
 
-#Edit YAML file.
-kubectl edit <K8S_RESOURCE> <RESOURCE_NAME>
-
-#Get outpot of the YAML file.
-kubectl get <K8S_RESOURCE> <RESOURCE_NAME> -o=yaml
-
 #Retrieves information about pods in a Kubernetes cluster, including additional details such as node allocation and IP addresses, in a wide output format.
 kubectl get pods -o wide
 
 #Displays real-time CPU and memory usage statistics for the pods within the specified namespace in a Kubernetes cluster.
 kubectl top pods -n <NAMESPACE_NAME>
+
+#Allows interactive access to a specific pod in a given namespace, opening a bash shell within the container.
+kubectl exec -it <POD_NAME> -n <NAMESPACE_NAME> -- /bin/bash
 
 #Get services.
 kubectl get svc -n <NAMESPACE_NAME>
@@ -78,6 +78,12 @@ kubectl delete serviceaccount/<SERVICE_ACCOUNT_NAME>
 
 #Get Horizontal Pod Autoscaler.
 kubectl get hpa -n <NAMESPACE_NAME>
+
+#Edit YAML file.
+kubectl edit <K8S_RESOURCE> <RESOURCE_NAME>
+
+#Get outpot of the YAML file.
+kubectl get <K8S_RESOURCE> <RESOURCE_NAME> -o=yaml
 
 #Lists all Custom Resource Definitions (CRDs) configured in a Kubernetes cluster, providing an overview of the custom resources available in the cluster.
 kubectl get crd
