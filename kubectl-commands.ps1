@@ -1,3 +1,4 @@
+#Is used to authenticate and gain access to Azure resources and services.
 az login
 
 #Attention, if you have a lot of different subscriptions connected to your account use.
