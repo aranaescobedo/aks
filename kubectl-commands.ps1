@@ -45,6 +45,10 @@ kubectl apply -f <FILEPATH>/<FILE_NAME> -f <FILEPATH>/<FILE_NAME>
 #Get deployments.
 kubectl get deployments -n <NAMESPACE_NAME>
 
+#To manual scale
+kubectl scale deployment <DEPLOYMENT_NAME> -n <NAMESPACE_NAME> --replicas=3
+kubectl get deployment <DEPLOYMENT_NAME> -n <NAMESPACE_NAME>
+
 #Delete deployment (pod included)
 kubectl delete deploy <DEPLOYMENT_NAME> -n <NAMESPACE_NAME>
 
@@ -85,8 +89,21 @@ kubectl edit <K8S_RESOURCE> <RESOURCE_NAME>
 #Get outpot of the YAML file.
 kubectl get <K8S_RESOURCE> <RESOURCE_NAME> -o=yaml
 
+#Use kubectl patch to force delete on a Persistent Volume
+kubectl patch pv <PERSISTENT_VOLUME_NAME> -p '{\"metadata\":{\"finalizers\":null}}'
+
 #Lists all Custom Resource Definitions (CRDs) configured in a Kubernetes cluster, providing an overview of the custom resources available in the cluster.
 kubectl get crd
+
+#Sets up a local port forwarding that redirects traffic from a specified local port to a service's port within a given namespace,
+#allowing direct access to the service from your local machine.
+kubectl port-forward service/<SERVICE_NAME> <YOUR_LOCAL_PORT_NUMBER>:<SERVICE_PORT_NUMBER> -n <NAMESPACE_NAME>
+
+#Run nslookup inside the container
+kubectl exec --stdin --tty <POD_NAME> -n <NAMESPACE_NAME> -- /bin/bash
+apt-get update
+apt install dnsutils
+nslookup <URL>
 
 #Is a fully qualified domain name (FQDN) convention used in Kubernetes to access a service within the same cluster.
 <service-name>.<service-namespace>.svc.cluster.local
