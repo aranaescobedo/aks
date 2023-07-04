@@ -112,5 +112,5 @@ nslookup <URL>
 #Verify that you can access the pods, you should receive an HTTP 200 OK response by using the following command.
 wget <SERVICE_NAME>.<SERVICE_NAMESPACE>.svc.cluster.local:<SERVICE_PORT_NUMBER>
 
-#Try to get a response back with a subpath.
+#Try to send an HTTP request with a specific subpath
 curl <SERVICE_NAME>.<SERVICE_NAMESPACE>.svc.cluster.local:<SERVICE_PORT_NUMBER>/<SUB_PATH>
