@@ -107,4 +107,10 @@ apt install dnsutils
 nslookup <URL>
 
 #Is a fully qualified domain name (FQDN) convention used in Kubernetes to access a service within the same cluster.
-<service-name>.<service-namespace>.svc.cluster.local
+<SERVICE_NAME>.<SERVICE_NAMESPACE>.svc.cluster.local:<SERVICE_PORT_NUMBER>
+
+#Verify that you can access the pods, you should receive an HTTP 200 OK response by using the following command.
+wget <SERVICE_NAME>.<SERVICE_NAMESPACE>.svc.cluster.local:<SERVICE_PORT_NUMBER>
+
+#Try to get a response back with a subpath.
+curl <SERVICE_NAME>.<SERVICE_NAMESPACE>.svc.cluster.local:<SERVICE_PORT_NUMBER>/<SUB_PATH>
