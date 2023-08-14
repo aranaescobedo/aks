@@ -56,6 +56,9 @@ kubectl delete deploy <DEPLOYMENT_NAME> -n <NAMESPACE_NAME>
 #Get pods.
 kubectl get pods -n <NAMESPACE_NAME>
 
+#List pods in all namespaces.
+kubectl get pods -A
+
 #To describe pods specifications.
 kubectl describe pods <POD_NAME> -n <NAMESPACE_NAME>
 
