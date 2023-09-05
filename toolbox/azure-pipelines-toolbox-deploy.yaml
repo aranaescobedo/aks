@@ -17,7 +17,7 @@ variables:
   containerRegistry: <ACR_LOGIN_SERVER_NAME>
   imageRepository: toolbox
   imageTag: '$(Build.BuildNumber)'
-  imageURL: $(containerRegistry)/$(containerRegistry)
+  imageURL: $(containerRegistry)/$(imageRepository)
   kubernetesServiceConnection: <AKS_SERVICE_CONNECTION_NAME>
   namespace: <NAMESPACE_NAME>
 
