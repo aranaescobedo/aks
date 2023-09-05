@@ -34,11 +34,20 @@ stages:
       runOnce:
         deploy:
           steps:
+          - task: DownloadBuildArtifacts@1
+            displayName: Download Artifacts from build pipe
+            inputs:
+              buildType: 'specific'
+              project: <AZURE_DEVOPS_PROJECT_NAME>
+              pipeline: <BUILD_PIPELINE_NAME>
+              buildVersionToDownload: 'latest'
+              downloadType: 'single'
+              artifactName: 'manifests'
+              downloadPath: '$(System.ArtifactsDirectory)'
           - task: KubectlInstaller@0
             displayName: Install latest kubectl
             inputs:
               kubectlVersion: 'latest'
-
           - task: KubernetesManifest@0
             displayName: Deploy to Kubernetes cluster
             inputs:
@@ -47,6 +56,6 @@ stages:
               namespace: $(namespace)
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/manifests/toolbox.yaml
+                $(System.ArtifactsDirectory)/toolbox.yaml
               containers: |
                 $(imageURL):latest
