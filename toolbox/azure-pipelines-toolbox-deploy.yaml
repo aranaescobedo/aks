@@ -42,6 +42,6 @@ stages:
               namespace: $(namespace)
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/manifests/toolbox.yml
+                $(Pipeline.Workspace)/manifests/toolbox.yaml
               containers: |
                 $(imageURL):latest
