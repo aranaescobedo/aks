@@ -1,8 +1,6 @@
 parameters:
   - name: environment
     type: string
-    values:
-      - test
 
 name: toolbox-deploy-$(Rev:r)
 
