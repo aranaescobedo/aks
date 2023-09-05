@@ -38,8 +38,8 @@ stages:
             displayName: Download Artifacts from build pipe
             inputs:
               buildType: 'specific'
-              project: <AZURE_DEVOPS_PROJECT_NAME>
-              pipeline: <BUILD_PIPELINE_NAME>
+              project: <PICK_AZURE_DEVOPS_PROJECT_NAME>
+              pipeline: <PICK_BUILD_PIPELINE_NAME>
               buildVersionToDownload: 'latest'
               downloadType: 'single'
               artifactName: 'manifests'
