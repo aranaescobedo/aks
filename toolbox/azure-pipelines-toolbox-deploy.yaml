@@ -1,6 +1,8 @@
 parameters:
   - name: environment
     type: string
+    values:
+      - <ADD_DEFAULT_ENV_VALUE>
 
 name: toolbox-deploy-$(Rev:r)
 
