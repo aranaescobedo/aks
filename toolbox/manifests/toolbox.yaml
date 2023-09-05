@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: vi-toolbox-container
-        image: <IMAGE_URL>/toolbox
+        image: <ACR_LOGIN_SERVER_NAME>/toolbox
         imagePullPolicy: Always
         command: [ "/bin/bash", "-c", "while true; do sleep 10; done" ]
