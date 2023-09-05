@@ -34,5 +34,5 @@ stages:
           $(imageTag)
           latest
 
-    - upload: manifests
+    - upload: toolbox/manifests
       artifact: manifests
