@@ -1,4 +1,4 @@
-manifests/toolbox.yaml
+manifests/deployment.yaml
 
 - <ACR_LOGIN_SERVER_NAME>: Add the Azure Container Registry server name.
 
