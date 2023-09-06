@@ -8,6 +8,7 @@ azure-pipelines-toolbox-build.yaml
 - <ACR_SERVICE_CONNECTION_NAME>: The name of the Azure Container Registry service connection.
 
 azure-pipelines-toolbox-deploy.yaml
+- <ADD_DEFAULT_ENV_VALUE>: Add the default value for your environment deploy.
 - <AGENT_NAME>: The agent pool name or use the Microsoft hosted agent.
 - <ACR_LOGIN_SERVER_NAME>: Add the Azure Container Registry server name.
 - <AKS_SERVICE_CONNECTION_NAME>: The name of the Azure Kubernetes Service service connection.
