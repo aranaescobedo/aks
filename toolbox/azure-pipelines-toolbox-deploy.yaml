@@ -56,6 +56,6 @@ stages:
               namespace: $(namespace)
               action: deploy
               manifests: |
-                $(System.ArtifactsDirectory)/toolbox.yaml
+                $(System.ArtifactsDirectory)/deployment.yaml
               containers: |
                 $(imageURL):latest
