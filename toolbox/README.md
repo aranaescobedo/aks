@@ -1,4 +1,4 @@
-# Toolbox 🧰
+# Toolbox-container 🧰
 
 Before using the toolbox container, make sure that you have replaced all the placeholders with your values.
 
