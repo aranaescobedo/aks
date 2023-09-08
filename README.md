@@ -1,5 +1,8 @@
-# AKS (Azure Kubernetes Service)
-This folder contains scripts that are used to interact with Azure Kubernetes Service (AKS).
+<p align="center">
+ <img width="100px" src=".images/azure-kubernetes-services.svg" align="center" alt="Azure Kubernetes Service" />
+ <h2 align="center">Azure Kubernetes Service(AKS)</h2>
+ <p align="center">This repository contains scripts that are used to interact with Azure Kubernetes Service (AKS).</p>
+</p>
 
 ## Prerequisites
 
@@ -13,7 +16,9 @@ Each script in this folder is designed to perform a specific task with AKS. Befo
 ## Script Descriptions
 
 - **[create-node-pool.ps1]**:  Creates a new node pool on your AKS-cluster.
+- **[kubectl-commands.ps1]**: Manage Kubernetes clusters and resources with kubectl.
 - **[toolbox]**: Create a toolbox container to more easily troubleshoot issues within your AKS cluster, including Azure DevOps pipelines.
+- TODO: ADD ESTABLISHED FEDERATED ID SCRIPT!
 
 ## Disclaimer
 Please note that this is provided as-is and may not suit all use cases. Use at your own discretion and make sure to thoroughly test before deployment in a production environment.
@@ -23,3 +28,4 @@ Please note that this is provided as-is and may not suit all use cases. Use at y
 [create-node-pool.ps1]:create-node-pool.ps1
 [kubectl]:https://kubernetes.io/docs/tasks/tools/
 [toolbox]:toolbox
+[kubectl-commands.ps1]:kubectl-commands.ps1
