@@ -4,7 +4,8 @@ Before using the toolbox container, make sure that you have replaced all the pla
 
 ### Dockerfile
 
-- ```FROM```: Using Ubuntu:18.04, if you are using a newer version, don't forget to update the FROM instruction
+- ```FROM```: Using Ubuntu:18.04, if you are using a newer version, don't forget to update the FROM instruction.
+- If you are missing a specific package you want to install to troubleshoot your issue more easily, simply add it to the Dockerfile.
 
 ### manifests/deployment.yaml
 
