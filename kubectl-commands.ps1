@@ -56,6 +56,9 @@ kubectl delete deploy <DEPLOYMENT_NAME> -n <NAMESPACE_NAME>
 #Get pods.
 kubectl get pods -n <NAMESPACE_NAME>
 
+#List pods in all namespaces.
+kubectl get pods -A
+
 #To describe pods specifications.
 kubectl describe pods <POD_NAME> -n <NAMESPACE_NAME>
 
@@ -83,6 +86,9 @@ kubectl delete serviceaccount/<SERVICE_ACCOUNT_NAME>
 
 #Get Horizontal Pod Autoscaler.
 kubectl get hpa -n <NAMESPACE_NAME>
+
+#Create the secret
+kubectl create secret generic <SECRET_NAME> --from-literal=license-key=<SECRET_VALUE> -n <NAMESPACE>
 
 #Edit YAML file.
 kubectl edit <K8S_RESOURCE> <RESOURCE_NAME>
