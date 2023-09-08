@@ -15,9 +15,9 @@ Each script in this folder is designed to perform a specific task with AKS. Befo
 
 ## Script Descriptions
 
+- **[toolbox]**: Create a toolbox container to more easily troubleshoot issues within your AKS cluster, including Azure DevOps pipelines.
 - **[create-node-pool.ps1]**:  Creates a new node pool on your AKS-cluster.
 - **[kubectl-commands.ps1]**: Manage Kubernetes clusters and resources with kubectl.
-- **[toolbox]**: Create a toolbox container to more easily troubleshoot issues within your AKS cluster, including Azure DevOps pipelines.
 - TODO: ADD ESTABLISHED FEDERATED ID SCRIPT!
 
 ## Disclaimer
