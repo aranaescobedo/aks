@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: toolbox-deploy
+spec:
+  selector:
+    matchLabels:
+      app: toolbox-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: toolbox-app
+    spec:
+      containers:
+      - name: vi-toolbox-container
+        image: <ACR_LOGIN_SERVER_NAME>/toolbox
+        imagePullPolicy: Always
+        command: [ "/bin/bash", "-c", "while true; do sleep 10; done" ]

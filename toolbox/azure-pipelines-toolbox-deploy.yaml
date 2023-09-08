@@ -1,0 +1,61 @@
+parameters:
+  - name: environment
+    type: string
+    values:
+      - <ADD_DEFAULT_ENV_VALUE>
+
+name: toolbox-deploy-$(Rev:r)
+
+trigger:
+- none
+
+resources:
+- repo: self
+
+variables:
+  agent: <AGENT_NAME>
+  containerRegistry: <ACR_LOGIN_SERVER_NAME>
+  imageRepository: toolbox
+  imageTag: '$(Build.BuildNumber)'
+  imageURL: $(containerRegistry)/$(imageRepository)
+  kubernetesServiceConnection: <AKS_SERVICE_CONNECTION_NAME>
+  namespace: <NAMESPACE_NAME>
+
+pool: $(agent)
+
+stages:
+- stage: Deploy
+  displayName: Deploy stage
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy
+    environment: ${{ parameters.environment }}
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: DownloadBuildArtifacts@1
+            displayName: Download Artifacts from build pipe
+            inputs:
+              buildType: 'specific'
+              project: <PICK_AZURE_DEVOPS_PROJECT_NAME>
+              pipeline: <PICK_BUILD_PIPELINE_NAME>
+              buildVersionToDownload: 'latest'
+              downloadType: 'single'
+              artifactName: 'manifests'
+              downloadPath: '$(System.ArtifactsDirectory)'
+          - task: KubectlInstaller@0
+            displayName: Install latest kubectl
+            inputs:
+              kubectlVersion: 'latest'
+          - task: KubernetesManifest@0
+            displayName: Deploy to Kubernetes cluster
+            inputs:
+              kubernetesServiceConnection: $(kubernetesServiceConnection)
+              #if you remove namespace it will use the default namespace
+              namespace: $(namespace)
+              action: deploy
+              manifests: |
+                $(System.ArtifactsDirectory)/deployment.yaml
+              containers: |
+                $(imageURL):latest
