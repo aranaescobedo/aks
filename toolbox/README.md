@@ -21,3 +21,6 @@ Before using the toolbox container, make sure that you have replaced all the pla
 - ```<ACR_LOGIN_SERVER_NAME>```: Add the Azure Container Registry server name.
 - ```<AKS_SERVICE_CONNECTION_NAME>```: The name of the Azure Kubernetes Service service connection.
 - ```<NAMESPACE_NAME>```: The namespace where you want to deploy your toolbox container.
+
+- ```<PICK_AZURE_DEVOPS_PROJECT_NAME>```: The Azure DevOps project from which to download the build artifacts.
+- ```<PICK_BUILD_PIPELINE_NAME>```: Select the build pipeline name.
