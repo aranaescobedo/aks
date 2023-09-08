@@ -15,6 +15,7 @@ Each script in this folder is designed to perform a specific task with AKS. Befo
 
 ## Script Descriptions
 
+- **[container-storage-interface]**: Contains a collection of solutions for common troubleshooting scenarios that may arise when using CSI on AKS.
 - **[toolbox]**: Create a toolbox container to more easily troubleshoot issues within your AKS cluster, including Azure DevOps pipelines.
 - **[create-node-pool.ps1]**:  Creates a new node pool on your AKS-cluster.
 - **[kubectl-commands.ps1]**: Manage Kubernetes clusters and resources with kubectl.
@@ -25,7 +26,9 @@ Please note that this is provided as-is and may not suit all use cases. Use at y
 
 [azure-account]: https://azure.microsoft.com/en-us/free
 [azure-cli]: https://docs.microsoft.com/en-us/cli/azure
+[container-storage-interface]: container-storage-interface
 [create-node-pool.ps1]:create-node-pool.ps1
 [kubectl]:https://kubernetes.io/docs/tasks/tools/
-[toolbox]:toolbox
 [kubectl-commands.ps1]:kubectl-commands.ps1
+[toolbox]:toolbox
+
