@@ -26,7 +26,7 @@ Please note that this is provided as-is and may not suit all use cases. Use at y
 
 [azure-account]: https://azure.microsoft.com/en-us/free
 [azure-cli]: https://docs.microsoft.com/en-us/cli/azure
-[container-storage-interface]: container-storage-interface
+[container-storage-interface]: container-storage-interface/troubleshooting.md
 [create-node-pool.ps1]:create-node-pool.ps1
 [kubectl]:https://kubernetes.io/docs/tasks/tools/
 [kubectl-commands.ps1]:kubectl-commands.ps1
