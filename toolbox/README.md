@@ -2,6 +2,10 @@
 
 Before using the toolbox container, make sure that you have replaced all the placeholders with your values.
 
+### Dockerfile
+
+- ```FROM```:!!!!!!!!!!!!!!!!!!!
+
 ### manifests/deployment.yaml
 
 - ```<ACR_LOGIN_SERVER_NAME>```: Add the Azure Container Registry server name.
