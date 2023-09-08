@@ -4,7 +4,7 @@ Before using the toolbox container, make sure that you have replaced all the pla
 
 ### Dockerfile
 
-- ```FROM```:!!!!!!!!!!!!!!!!!!!
+- ```FROM```: Using Ubuntu:18.04, if you are using a newer version, don't forget to update the FROM instruction
 
 ### manifests/deployment.yaml
 
@@ -22,5 +22,5 @@ Before using the toolbox container, make sure that you have replaced all the pla
 - ```<AKS_SERVICE_CONNECTION_NAME>```: The name of the Azure Kubernetes Service service connection.
 - ```<NAMESPACE_NAME>```: The namespace where you want to deploy your toolbox container.
 
-- ```<PICK_AZURE_DEVOPS_PROJECT_NAME>```: The Azure DevOps project from which to download the build artifacts.
-- ```<PICK_BUILD_PIPELINE_NAME>```: Select the build pipeline name.
+- ```<PICK_AZURE_DEVOPS_PROJECT_NAME>```: Specify the Azure DevOps project from which to download the build artifacts.
+- ```<PICK_BUILD_PIPELINE_NAME>```: Choose the name of the build pipeline.
