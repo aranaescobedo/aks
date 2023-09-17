@@ -19,6 +19,10 @@ This README contains a collection of solutions for common troubleshooting scenar
 
    -  **You may need to add your cluster's virtual network to your Key Vault network to establish connectivity.**
 
+-  ```MountVolume.SetUp failed for volume "<VOLUME_NAME>" : rpc error: code = Unknown desc = failed to mount secrets store objects for pod <NAMESPACE>/<POD_NAME>, err: rpc error: code = Unknown desc = failed to mount objects, error: failed to get objectType:secret, objectName:<SECRET_NAME>, objectVersion:: keyvault.BaseClient#GetSecret: Failure responding to request: StatusCode=403 -- Original Error: autorest/azure: Service returned an error. Status=403 Code="Forbidden" Message="Public network access is disabled and request is not from a trusted service nor via an approved private link." InnerError={"code":"ForbiddenByConnection"}```
+
+   -  **Check your network configuration. It could be that you're missing a Virtual network link on your private DNS zone (privatelink.vaultcore.azure.net).**
+
 ### 404
   - ```error: reply status code was 400: {"error":"invalid_request","error_description":"AADSTS70021: No matching federated identity record found for presented assertion```
     - **Check that you have the correct ClientID in your SecretProviderClass YAML file.**
