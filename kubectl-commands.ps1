@@ -46,6 +46,15 @@ kubectl apply -f <FILEPATH>/<FILE_NAME> -f <FILEPATH>/<FILE_NAME>
 #Get deployments.
 kubectl get deployments -n <NAMESPACE_NAME>
 
+#Get ALL the deployment names
+kubectl get deployments --all-namespaces -o custom-columns="DEPLOYMENT NAME:.metadata.name" | ForEach-Object { $_.Trim() }
+
+#Retrieves JSON-formatted information about all deployments in a cluster, saving the output to a file named "deployments.json.
+kubectl get deployments --all-namespaces -o json > deployments.json
+
+#Retrieves YAML-formatted information about all deployments in a cluster, saving the output to a file named "deployments.yaml.
+kubectl get deployments --all-namespaces -o yaml > deployments.yaml
+
 #To manually scale
 kubectl scale deployment <DEPLOYMENT_NAME> -n <NAMESPACE_NAME> --replicas=3
 kubectl get deployment <DEPLOYMENT_NAME> -n <NAMESPACE_NAME>
@@ -55,6 +64,9 @@ kubectl delete deploy <DEPLOYMENT_NAME> -n <NAMESPACE_NAME>
 
 #Get pods.
 kubectl get pods -n <NAMESPACE_NAME>
+
+#Get ALL the pod names
+ kubectl get pods --all-namespaces -o custom-columns="POD NAME:.metadata.name" | ForEach-Object { $_.Trim() }
 
 #List pods in all namespaces.
 kubectl get pods -A
