@@ -28,6 +28,13 @@ kubectl top nodes | Where-Object { $_ -like "*<NODE_NAME>*" }
 #Provides detailed information about a node in the Kubernetes cluster, including its labels, capacity, usage, conditions, and other relevant details.
 kubectl describe node <NODE_NAME>
 
+#Add label on node.
+kubectl label node <NODE_NAME> <LABEL_NAME>=<TAG_VALUE>
+
+#Delete label on node.
+kubectl label node <NODE_NAME> <LABEL_NAME>-
+
+
 #Create a new namespace.
 kubectl create namespace <NAMESPACE_NAME>
 
