@@ -13,6 +13,9 @@ This README contains a collection of solutions for common troubleshooting scenar
 
 - ```error: code = Unknown desc = failed to mount objects, error: failed to get keyvault client: failed to get authorizer for keyvault client: failed to acquire token: FromAssertion(): http call(https://login.microsoftonline.com/<TENANT_ID>/oauth2/v2.0/token)(POST) error: reply status code was 401:{"error":"unauthorized_client","error_description":"AADSTS70021: No matching federated identity record found for presented assertion. Assertion Issuer: 'https://westeurope.oic.prod-aks.azure.com/<TENANT_ID>/<FEDERATED_IDENTITY_ID>/'. Assertion Subject: 'system:serviceaccount:<NAMESPACE>:<SERVICE_ACCOUNT_NAME>'. Assertion Audience: 'api://AzureADTokenExchange'. https://docs.microsoft.com/en-us/azure/active-directory/develop/workload-identity-federation\r\nTrace ID: <TRACE_ID>\r\nCorrelation ID: <CORRELATION_ID>\r\nTimestamp: <TIMESTAMP>","error_codes":[70021],"timestamp":"<TIMESTAMP>","trace_id":"<TRACE_ID>","correlation_id":"<CORRELATION_ID>","error_uri":"https://login.microsoftonline.com/error?code=70021"}```
   - **Ensure that the SecretProviderClass YAML file contains a valid ClientID and is not empty or has the wrong value.**
+ 
+- ```error: reply status code was 401: {"error":"invalid_client","error_description":"AADSTS70021: No matching federated identity record found for presented assertion. Assertion Issuer: 'https://westeurope.oic.prod-aks.azure.com/<TENANT_ID>/<XXX>/'. Assertion Subject: 'system:serviceaccount:<NAMESPACE>:<SERVICE_ACCOUNT_NAME>'. Assertion Audience: 'api://AzureADTokenExchange'. https://docs.microsoft.com/en-us/azure/active-directory/develop/workload-identity-federation\r\nTrace ID: <TRACE_ID>\r\nCorrelation ID: <CORRELATION_ID>\r\nTimestamp: <TIMESTAMP>","error_codes":[70021],"timestamp":"<TIMESTAMP>","trace_id":"<TRACE_ID>","correlation_id":"<CORRELATION_ID>","error_uri":"https://login.microsoftonline.com/error?code=70021"}```
+  - **Remove the federated credentials connected to your managed identity, and then re-add the federated credentials.**
 
 ### 403
 -  ```error: code = Unknown desc = failed to mount objects, error: failed to get objectType:secret, objectName:<SECRETNAME>, objectVersion:: keyvault.BaseClient#GetSecret: Failure responding to request: StatusCode=403 -- Original Error: autorest/azure: Service returned an error. Status=403 Code="Forbidden" Message="Client address is not authorized and caller is not a trusted service.\r\nClient address: <IP_ADDRESS> from unknown subnet\ r\nVault: <KEY_VAULT_NAME>;location=westeurope" InnerError={"code":"ForbiddenByFirewall"}```
@@ -33,5 +36,7 @@ This README contains a collection of solutions for common troubleshooting scenar
 ### MountVolume.SetUp
   - ```MountVolume.SetUp failed for volume "<SECRET_PROVIDER_CLASS_NAME>" : rpc error: code = Unknown desc = failed to mount secrets store objects for pod <NAMESPACE>/<POD_NAME>, err: rpc error: code = Unknown desc = failed to mount objects, error: failed to create auth config, error: failed to get credentials, nodePublishSecretRef secret is not set```
     - **Check that you have the correct ClientID or the right structure in your SecretProviderClass YAML file.**
+
+
 
  
