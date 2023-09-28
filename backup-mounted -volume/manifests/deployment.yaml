@@ -1,0 +1,16 @@
+﻿apiVersion: v1
+kind: Pod
+metadata:
+  name: backup-disk-pod
+  namespace: <NAMESPACE_NAME>
+spec:
+  containers:
+    - image: docker.io/aranaescobedo/workload-id-csi-aks:1.1
+      name: backup-container
+      volumeMounts:
+          - name: volume
+            mountPath: "/backup/azure"
+  volumes:
+  - name: volume
+    persistentVolumeClaim:
+      claimName: azure-managed-disk
