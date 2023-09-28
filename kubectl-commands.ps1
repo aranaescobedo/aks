@@ -44,6 +44,9 @@ kubectl label namespace <NAMESPACE_NAME> name=<Value>
 #Set a default namespace.
 kubectl config set-context --current --namespace=<NAMESPACE_NAME>
 
+#Deploy a K8s object with kustomize.
+kubectl apply -k <KUSTOMIZATION_DIRECTORY>
+
 #Deploy a K8s object.
 kubectl apply -f <FILEPATH>/<FILE_NAME>
 
