@@ -2,6 +2,7 @@
 $aksName = "aks-cluster-test-we-01"
 $aksResourceGroup = "rg-cluster-test-we"
 $backupVaultName = "bvault-volume-test-we-01"
+$backupPolicyName = "bvault-policy-test-we-01"
 $kvResourceGroup = "rg-volume-test-we"
 $kvName = "kv-volume-test-we-01"
 $keyName "key-cluster-volume-test-we-01"
@@ -51,9 +52,14 @@ az dataprotection backup-vault create `
 --type SystemAssigned
 --storage-settings datastore-type="VaultStore"type="LocallyRedundant"
 
+"[*] Get policy template"
+az dataprotection backup-policy get-default-policy-template --datasource-type AzureDisk > policy.json
+
 "[*] Create Backup Policy"
-//https://learn.microsoft.com/en-us/azure/backup/backup-managed-disks-cli
+az dataprotection backup-policy create --resource-group $kvResourceGroup --vault-name $backupVaultName `
+--backup-policy-name  $backupPolicyName --policy policy.json
 
 //SOURCE:
 //https://learn.microsoft.com/en-us/azure/aks/csi-storage-drivers
 //https://learn.microsoft.com/en-us/azure/aks/azure-disk-csi
+//https://learn.microsoft.com/en-us/azure/backup/backup-managed-disks-cli
