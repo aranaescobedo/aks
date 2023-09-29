@@ -1,4 +1,4 @@
-# I'm using Azure CLI in this example:
+#I'm using Azure CLI in this example:
 $aksName = "aks-cluster-test-we-01"
 $aksResourceGroup = "rg-cluster-test-we"
 $backupVaultName = "bvault-volume-test-we-01"
