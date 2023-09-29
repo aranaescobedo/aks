@@ -7,7 +7,7 @@ $kvName = "kv-volume-test-we-01"
 "keyName" "key-cluster-volume-test-we-01"
 $location = "westeurope"
 $namespace = "hero"
-subscriptionName = <SUBSCRIPTION_NAME>
+$subscriptionName = <SUBSCRIPTION_NAME>
 
 "[*] Create resource group for the AKS"
 az group create --name $aksResourceGroup --location $location
