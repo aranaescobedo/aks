@@ -4,7 +4,7 @@ $aksResourceGroup = "rg-cluster-test-we"
 $backupVaultName = "bvault-volume-test-we-01"
 $kvResourceGroup = "rg-volume-test-we"
 $kvName = "kv-volume-test-we-01"
-"keyName" "key-cluster-volume-test-we-01"
+$keyName "key-cluster-volume-test-we-01"
 $location = "westeurope"
 $namespace = "hero"
 $subscriptionName = <SUBSCRIPTION_NAME>
@@ -44,7 +44,12 @@ az disk-encryption-set create `
 --source-vault MyVault
 
 "[*] Create Backup Vault" 
-az backup vault create --resource-group --name --location $location
+az dataprotection backup-vault create `
+--resource-group $kvResourceGroup `
+--vault-name $backupVaultName `
+--location $location `
+--type SystemAssigned
+--storage-settings datastore-type="VaultStore"type="LocallyRedundant"
 
 "[*] Create Backup Policy"
 //https://learn.microsoft.com/en-us/azure/backup/backup-managed-disks-cli
