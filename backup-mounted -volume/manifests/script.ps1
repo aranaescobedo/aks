@@ -46,6 +46,9 @@ az disk-encryption-set create `
 "[*] Create Backup Vault" 
 az backup vault create --resource-group --name --location $location
 
+"[*] Create Backup Policy"
+//https://learn.microsoft.com/en-us/azure/backup/backup-managed-disks-cli
+
 //SOURCE:
 //https://learn.microsoft.com/en-us/azure/aks/csi-storage-drivers
 //https://learn.microsoft.com/en-us/azure/aks/azure-disk-csi
