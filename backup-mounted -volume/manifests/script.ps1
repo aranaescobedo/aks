@@ -68,3 +68,4 @@ az dataprotection backup-policy create --resource-group $kvResourceGroup --vault
 //https://learn.microsoft.com/en-us/azure/aks/azure-disk-csi
 //https://learn.microsoft.com/en-us/azure/backup/backup-managed-disks-cli
 //https://learn.microsoft.com/en-us/azure/aks/azure-disk-customer-managed-keys
+//https://github.com/openshift/azure-disk-csi-driver/blob/master/deploy/example/failover/README.md
