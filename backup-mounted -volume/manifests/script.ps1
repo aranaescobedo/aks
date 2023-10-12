@@ -3,9 +3,10 @@ $aksName = "aks-cluster-test-we-01"
 $aksResourceGroup = "rg-cluster-test-we"
 $backupVaultName = "bvault-volume-test-we-01"
 $backupPolicyName = "bvault-policy-test-we-01"
+$desName = "des-volume-test-we-01"
 $kvResourceGroup = "rg-volume-test-we"
 $kvName = "kv-volume-test-we-01"
-$keyName "key-cluster-volume-test-we-01"
+$keyName = "key-cluster-volume-test-we-01"
 $location = "westeurope"
 $namespace = "hero"
 $subscriptionName = <SUBSCRIPTION_NAME>
@@ -14,23 +15,43 @@ $subscriptionName = <SUBSCRIPTION_NAME>
 az group create --name $kvResourceGroup --location $location
 
 "[*] Create Key Vault"
-az keyvault create --name $kvName --resource-group $kvResourceGroup --location $location
+$keyVaultId = az keyvault create `
+--name $kvName `
+--resource-group $kvResourceGroup `
+--enable-rbac-authorization true `
+--location $location `
+--enabled-for-disk-encryption true `
+--query "id" -o tsv `
+--enable-purge-protection false #This should be 'true' when used in real prod scenarios.
 
 "[*] Create Key"
-$xxx = az keyvault key create `
+$keyUrl = az keyvault key create `
 --subscription $subscriptionName `
---vault-name $kvName
+--vault-name $kvName `
 --name $keyName `
 --kty RSA `
 --size 2048 `
-//TODO: Enable oft delete and purge protection
+--query "key.kid" -o tsv
 
 "[*] Create disk encryption set"
-$xxx = az disk-encryption-set create `
---resource-group MyResourceGroup `
---name MyDiskEncryptionSet `
---key-url MyKey `
---source-vault $kvName
+$diskEncryptionSetId = az disk-encryption-set create `
+--resource-group $kvResourceGroup `
+--name $desName `
+--key-url $keyUrl `
+--source-vault $kvName `
+--query "id" -o tsv
+
+"[*] Get disk encryption set identity"
+$principalId = az disk-encryption-set identity show `
+--name $desName `
+--resource-group $kvResourceGroup `
+--query "principalId" -o tsv
+
+"[*] Give disk encyption set access to Key Vault"
+az role assignment create `
+--assignee $principalId `
+--role "Key Vault Crypto User" `
+--scope $keyVaultId #TODO: CHECK THAT YOU GET THE ID FROM KEYVAULT CREATE CMD!
 
 "[*] Create resource group for the AKS"
 az group create --name $aksResourceGroup --location $location
