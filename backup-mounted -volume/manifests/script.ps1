@@ -73,14 +73,13 @@ az role assignment create `
 #az group create --name $aksResourceGroup --location $location
 
 "[*] Create AKS"
-//Encryption of OS disk with customer-managed keys can only be enabled when creating an AKS cluster. TRUE?
+#Attn: Encryption of OS disk with customer-managed keys can only be enabled when creating an AKS cluster!
 az aks create `
 --resource-group $kvResourceGroup `
 --name $aksName `
 --kubernetes-version 1.26 `
 --node-count 1 `
 --location $location `
---enable-disk-driver `
 --network-plugin azure `
 --node-osdisk-diskencryptionset-id $diskEncryptionSetId `
 --node-osdisk-type Managed
