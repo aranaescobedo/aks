@@ -74,6 +74,7 @@ az role assignment create `
 
 "[*] Create AKS"
 #Attn: Encryption of OS disk with customer-managed keys can only be enabled when creating an AKS cluster!
+#When creating the cluster you already get Azure Disks CSI driver enabled.
 az aks create `
 --resource-group $kvResourceGroup `
 --name $aksName `
