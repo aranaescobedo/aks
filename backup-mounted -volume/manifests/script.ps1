@@ -99,9 +99,9 @@ az dataprotection backup-policy get-default-policy-template --datasource-type Az
 az dataprotection backup-policy create --resource-group $kvResourceGroup --vault-name $backupVaultName `
 --backup-policy-name  $backupPolicyName --policy policy.json
 
-//SOURCE:
-//https://learn.microsoft.com/en-us/azure/aks/csi-storage-drivers
-//https://learn.microsoft.com/en-us/azure/aks/azure-disk-csi
-//https://learn.microsoft.com/en-us/azure/backup/backup-managed-disks-cli
-//https://learn.microsoft.com/en-us/azure/aks/azure-disk-customer-managed-keys
-//https://github.com/openshift/azure-disk-csi-driver/blob/master/deploy/example/failover/README.md
+#SOURCE:
+#https://learn.microsoft.com/en-us/azure/aks/csi-storage-drivers
+#https://learn.microsoft.com/en-us/azure/aks/azure-disk-csi
+#https://learn.microsoft.com/en-us/azure/backup/backup-managed-disks-cli
+#https://learn.microsoft.com/en-us/azure/aks/azure-disk-customer-managed-keys
+#https://github.com/openshift/azure-disk-csi-driver/blob/master/deploy/example/failover/README.md
