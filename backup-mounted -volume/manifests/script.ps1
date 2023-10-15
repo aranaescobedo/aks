@@ -4,6 +4,7 @@ $aksResourceGroup = "rg-cluster-test-we"
 $backupVaultName = "bvault-volume-test-we-01"
 $backupPolicyName = "bvault-policy-test-we-01"
 $desName = "des-volume-test-we-01"
+$email = "<YOUR_EMAIL>"
 $kvResourceGroup = "rg-volume-test-we"
 $kvName = "kv-volume-test-we-01"
 $keyName = "key-cluster-volume-test-we-01"
@@ -31,6 +32,12 @@ $keyVaultId = az keyvault create `
 --enabled-for-disk-encryption true `
 --query "id" -o tsv `
 --enable-purge-protection false #This should be 'true' when used in real prod scenarios.
+
+"[*] Give yourself the Key Vault Administrator permission"
+az role assignment create `
+--assignee $email `
+--role "Key Vault Administrator" `
+--scope $keyVaultId
 
 "[*] Create Key"
 $keyUrl = az keyvault key create `
