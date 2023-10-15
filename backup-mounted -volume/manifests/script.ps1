@@ -11,8 +11,15 @@ $location = "westeurope"
 $namespace = "hero"
 $subscriptionName = <SUBSCRIPTION_NAME>
 
+"[*] Set environment:"
+az account set --subscription $subscriptionName
+
 "[*] Create resource group for the Key Vault"
 az group create --name $kvResourceGroup --location $location
+
+#Purge soft-deleted key vault (WARNING! THIS OPERATION WILL PERMANENTLY DELETE YOUR KEY VAULT)
+#az keyvault list-deleted --subscription $subscriptionName --resource-type vault
+#az keyvault purge --subscription $subscriptionName --name $kvName
 
 "[*] Create Key Vault"
 $keyVaultId = az keyvault create `
