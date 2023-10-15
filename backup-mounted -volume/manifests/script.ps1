@@ -1,5 +1,5 @@
 #I'm using Azure CLI in this example:
-$aksName = "aks-cluster-test-we-01"
+#$aksName = "aks-cluster-test-we-01"
 $aksResourceGroup = "rg-cluster-test-we"
 $backupVaultName = "bvault-volume-test-we-01"
 $backupPolicyName = "bvault-policy-test-we-01"
@@ -69,13 +69,13 @@ az role assignment create `
 --scope $keyVaultId
 #--role "Key Vault Crypto User" `CHECK IF YOU ARE GIVING THE RIGHT ACCESS TO THE KEY VAULT..
 
-"[*] Create resource group for the AKS"
-az group create --name $aksResourceGroup --location $location
+#"[*] Create resource group for the AKS"
+#az group create --name $aksResourceGroup --location $location
 
 "[*] Create AKS"
 //Encryption of OS disk with customer-managed keys can only be enabled when creating an AKS cluster. TRUE?
 az aks create `
---resource-group $aksResourceGroup `
+--resource-group $kvResourceGroup `
 --name $aksName `
 --kubernetes-version 1.26 `
 --node-count 1 `
