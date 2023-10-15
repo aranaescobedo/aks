@@ -18,6 +18,7 @@ az account set --subscription $subscriptionName
 az group create --name $kvResourceGroup --location $location
 
 #Purge soft-deleted key vault (WARNING! THIS OPERATION WILL PERMANENTLY DELETE YOUR KEY VAULT)
+#These commands below are used for testing purposes!
 #az keyvault list-deleted --subscription $subscriptionName --resource-type vault
 #az keyvault purge --subscription $subscriptionName --name $kvName
 
