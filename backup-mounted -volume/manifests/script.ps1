@@ -65,8 +65,9 @@ $principalId = az disk-encryption-set identity show `
 "[*] Give disk encyption set access to Key Vault"
 az role assignment create `
 --assignee $principalId `
---role "Key Vault Crypto User" `
---scope $keyVaultId #TODO: CHECK THAT YOU GET THE ID FROM KEYVAULT CREATE CMD!
+--role "Key Vault Crypto Service Encryption User" `
+--scope $keyVaultId
+#--role "Key Vault Crypto User" `CHECK IF YOU ARE GIVING THE RIGHT ACCESS TO THE KEY VAULT..
 
 "[*] Create resource group for the AKS"
 az group create --name $aksResourceGroup --location $location
