@@ -16,11 +16,21 @@ Each script in this folder is designed to perform a specific task with AKS. Befo
 ## Script Descriptions
 
 - **[container-storage-interface]**: Contains a collection of solutions for common troubleshooting scenarios that may arise when using CSI on AKS.
+  
 - **[toolbox]**: Create a toolbox container to more easily troubleshoot issues within your AKS cluster, including Azure DevOps pipelines.
+  
 - **[workload-identity]**: Contains a collection of solutions for common troubleshooting scenarios that may arise when using workload identity on AKS.
+  
 - **[create-node-pool.ps1]**:  Creates a new node pool on your AKS-cluster.
+  
 - **[delete-namespace.ps1]**: This script resolves a stuck Kubernetes namespace with a "Terminating" status.
+
+- **[images-vulnerability-findings-mdvm.kql]**: Identifies vulnerabilities in container images running on your Kubernetes clusters for specific CVE vulnerabilities, powered by powered by Microsoft Defender Vulnerability Management.
+ 
+- **[images-vulnerability-findings-qualys.kql]**: Identifies vulnerabilities in container images running on your Kubernetes clusters for specific CVE vulnerabilities, powered by Qualys.
+  
 - **[kubectl-commands.ps1]**: Manage Kubernetes clusters and resources with kubectl.
+  
 - TODO: ADD ESTABLISHED FEDERATED ID SCRIPT!
 
 ## Disclaimer
@@ -31,6 +41,8 @@ Please note that this is provided as-is and may not suit all use cases. Use at y
 [container-storage-interface]: container-storage-interface/troubleshooting.md
 [create-node-pool.ps1]:create-node-pool.ps1
 [delete-namespace.ps1]:delete-namespace.ps1
+[images-vulnerability-findings-mdvm.kql]:images-vulnerability-findings-mdvm.kql
+[images-vulnerability-findings-qualys.kql]:images-vulnerability-findings-qualys.kql
 [kubectl]:https://kubernetes.io/docs/tasks/tools/
 [kubectl-commands.ps1]:kubectl-commands.ps1
 [toolbox]:toolbox
