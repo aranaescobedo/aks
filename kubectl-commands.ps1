@@ -110,7 +110,7 @@ kubectl delete serviceaccount/<SERVICE_ACCOUNT_NAME>
 kubectl get hpa -n <NAMESPACE_NAME>
 
 #Create the secret
-kubectl create secret generic <SECRET_NAME> --from-literal=license-key=<SECRET_VALUE> -n <NAMESPACE>
+kubectl create secret generic <SECRET_NAME> --from-literal=<SECRET_KEY>=<SECRET_VALUE> -n <NAMESPACE>
 
 #Edit YAML file.
 kubectl edit <K8S_RESOURCE> <RESOURCE_NAME>
