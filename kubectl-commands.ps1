@@ -37,7 +37,6 @@ kubectl label node <NODE_NAME> <LABEL_NAME>=<TAG_VALUE>
 #Delete label on node.
 kubectl label node <NODE_NAME> <LABEL_NAME>-
 
-
 #Create a new namespace.
 kubectl create namespace <NAMESPACE_NAME>
 
