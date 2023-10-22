@@ -10,6 +10,9 @@ az aks get-credentials -g <RESOURCE_GROUP_NAME> -n <CLUSTER_NAME>
 #List all contexts defined in your kubeconfig file.
 kubectl config get-contexts
 
+#Displays the configuration settings (context, cluster, user, etc.) and the authentication credentials being used for your Kubernetes cluster.
+kubectl config view
+
 #Change context.
 kubectl config use-context <CONTEXT_NAME>
 
@@ -33,7 +36,6 @@ kubectl label node <NODE_NAME> <LABEL_NAME>=<TAG_VALUE>
 
 #Delete label on node.
 kubectl label node <NODE_NAME> <LABEL_NAME>-
-
 
 #Create a new namespace.
 kubectl create namespace <NAMESPACE_NAME>
