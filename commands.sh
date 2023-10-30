@@ -14,3 +14,7 @@ echo <PASSWORD> | base64
 
 #Convert a Base64-encoded password back into its plain text form.
 echo <PASSWORD> | base64 --decode
+
+#GOOD TO KNOW.
+#If you are using bash (the default), your prompt will tell you if you are acting as root.
+#If it ends in a '$' you are running as a normal user. If it ends in a '#' you are running as root.
