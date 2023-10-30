@@ -3,6 +3,9 @@
 #It displays the username of the current user when this command is invoked.
 whoami
 
+#Displays the user's unique identification number.
+echo $UID
+
 #Will show you a detailed list of all files and directories, including hidden ones, in the current directory.
 ls -la
 
