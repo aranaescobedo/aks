@@ -46,6 +46,9 @@ kubectl label namespace <NAMESPACE_NAME> name=<Value>
 #Set a default namespace.
 kubectl config set-context --current --namespace=<NAMESPACE_NAME>
 
+#Retrieves a list of Kubernetes namespaces and displays only their names without any additional headers or formatting.
+kubectl get namespaces -o custom-columns="NAMESPACE:.metadata.name" --no-headers
+
 #Deploy a K8s object with kustomize.
 kubectl apply -k <KUSTOMIZATION_DIRECTORY>
 
