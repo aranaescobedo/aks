@@ -85,6 +85,13 @@ az aks create `
 --node-osdisk-diskencryptionset-id $diskEncryptionSetId `
 --node-osdisk-type Managed
 
+"[*] Update AKS with with disk driver"
+#Not possible to run --enable-disk-driver with az aks create
+az aks update `
+--resource-group $kvResourceGroup `
+--name $aksName `
+--enable-disk-driver
+
 "[*] Create Backup Vault" 
 az dataprotection backup-vault create `
 --resource-group $kvResourceGroup `
