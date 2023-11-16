@@ -79,6 +79,12 @@ $clientId = az identity create `
     --resource-group $aksResourceGroup `
     --query "clientId" -o tsv
 
+"[*] Give AKS user assigned identity Read permission to disk encyption set"
+az role assignment create `
+    --assignee $clientId `
+    --role "Reader" `
+    --scope $diskEncryptionSetId
+
 "[*] Create AKS"
 #Attn: Encryption of OS disk with customer-managed keys can only be enabled when creating an AKS cluster!
 #When creating the cluster you already get Azure Disks CSI driver enabled.
