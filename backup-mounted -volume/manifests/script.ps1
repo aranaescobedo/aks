@@ -11,6 +11,7 @@ $keyName = "key-cluster-volume-test-we-01"
 $location = "westeurope"
 $namespace = "hero"
 $subscriptionName = <SUBSCRIPTION_NAME>
+$userAssignedIdentity = "id-cluster-test-we-01"
 
 "[*] Set environment:"
 az account set --subscription $subscriptionName
