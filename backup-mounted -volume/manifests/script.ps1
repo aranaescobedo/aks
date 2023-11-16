@@ -13,7 +13,7 @@ $namespace = "hero"
 $subscriptionName = <SUBSCRIPTION_NAME>
 $userAssignedIdentity = "id-cluster-test-we-01"
 
-"[*] Set environment:"
+"[*] Set subscription: $subscriptionName"
 az account set --subscription $subscriptionName
 
 "[*] Create resource group for the Key Vault"
@@ -36,9 +36,9 @@ $keyVaultId = az keyvault create `
 
 "[*] Give yourself the Key Vault Administrator permission"
 az role assignment create `
-  --assignee $email `
-  --role "Key Vault Administrator" `
-  --scope $keyVaultId
+    --assignee $email `
+    --role "Key Vault Administrator" `
+    --scope $keyVaultId
 
 "[*] Create Key"
 $keyUrl = az keyvault key create `
@@ -73,7 +73,7 @@ az role assignment create `
 #"[*] Create resource group for the AKS"
 #az group create --name $aksResourceGroup --location $location
 
-"[*] Create a user assigned identity"
+"[*] Create a AKS user assigned identity"
 $clientId = az identity create `
     --name $userAssignedIdentity `
     --resource-group $aksResourceGroup `
