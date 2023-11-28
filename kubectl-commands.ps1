@@ -98,7 +98,8 @@ kubectl get pods -o wide
 #Displays real-time CPU and memory usage statistics for the pods within the specified namespace in a Kubernetes cluster.
 kubectl top pods -n <NAMESPACE_NAME>
 
- kubectl get pods -n <NAMESPACE_NAME> -o custom-columns='POD:.metadata.name, IMAGE:.spec.containers[*].image' | Where-Object { $_ -notmatch "<ACR_NAME>" }
+#Is used to list all pods in a specific namespace in a Kubernetes cluster and display their names and images. It then filters OUT any pods whose images are coming from a specified Azure Container Registry (ACR).
+kubectl get pods -n <NAMESPACE_NAME> -o custom-columns='POD:.metadata.name, IMAGE:.spec.containers[*].image' | Where-Object { $_ -notmatch "<ACR_NAME>" }
 
 #Allows interactive access to a specific pod in a given namespace, opening a bash shell within the container.
 kubectl exec -it <POD_NAME> -n <NAMESPACE_NAME> -- /bin/bash
