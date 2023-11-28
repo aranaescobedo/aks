@@ -81,7 +81,7 @@ kubectl delete deploy <DEPLOYMENT_NAME> -n <NAMESPACE_NAME>
 kubectl get pods -n <NAMESPACE_NAME>
 
 #Get ALL the pod names
- kubectl get pods --all-namespaces -o custom-columns="POD NAME:.metadata.name" | ForEach-Object { $_.Trim() }
+kubectl get pods --all-namespaces -o custom-columns="POD NAME:.metadata.name" | ForEach-Object { $_.Trim() }
 
 #List pods in all namespaces.
 kubectl get pods -A
@@ -97,6 +97,8 @@ kubectl get pods -o wide
 
 #Displays real-time CPU and memory usage statistics for the pods within the specified namespace in a Kubernetes cluster.
 kubectl top pods -n <NAMESPACE_NAME>
+
+ kubectl get pods -n <NAMESPACE_NAME> -o custom-columns='POD:.metadata.name, IMAGE:.spec.containers[*].image' | Where-Object { $_ -notmatch "<ACR_NAME>" }
 
 #Allows interactive access to a specific pod in a given namespace, opening a bash shell within the container.
 kubectl exec -it <POD_NAME> -n <NAMESPACE_NAME> -- /bin/bash
@@ -141,6 +143,9 @@ nslookup <URL>
 
 #Is a fully qualified domain name (FQDN) convention used in Kubernetes to access a service within the same cluster.
 <SERVICE_NAME>.<SERVICE_NAMESPACE>.svc.cluster.local:<SERVICE_PORT_NUMBER>
+
+#Is used to find out the internal IP address of a service in a Kubernetes cluster, helping to check if the service is correctly set up and reachable within the cluster.
+nslookup <SERVICE_NAME>.<SERVICE_NAMESPACE>.svc.cluster.local
 
 #Verify that you can access the pods, you should receive an HTTP 200 OK response by using the following command.
 wget <SERVICE_NAME>.<SERVICE_NAMESPACE>.svc.cluster.local:<SERVICE_PORT_NUMBER>
