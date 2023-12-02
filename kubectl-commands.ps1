@@ -153,3 +153,6 @@ wget <SERVICE_NAME>.<SERVICE_NAMESPACE>.svc.cluster.local:<SERVICE_PORT_NUMBER>
 
 #Try to send an HTTP request with a specific subpath.
 curl <SERVICE_NAME>.<SERVICE_NAMESPACE>.svc.cluster.local:<SERVICE_PORT_NUMBER>/<SUB_PATH>
+
+#Check the API version running on a specific Kubernetes resource.
+kubectl get <K8S_RESOURCE> --all-namespaces -o=jsonpath="{range .items[*]}{.apiVersion}`t{.kind}`t{.metadata.name}`n{end}"
