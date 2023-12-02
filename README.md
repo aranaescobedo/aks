@@ -15,6 +15,8 @@ Each script in this folder is designed to perform a specific task with AKS. Befo
 
 ## Script Descriptions
 
+- **[add-ons]**: Scripts for installing various add-ons to enhance the functionality of the AKS cluster.
+  
 - **[container-storage-interface]**: Contains a collection of solutions for common troubleshooting scenarios that may arise when using CSI on AKS.
   
 - **[toolbox]**: Create a toolbox container to more easily troubleshoot issues within your AKS cluster, including Azure DevOps pipelines.
@@ -40,6 +42,7 @@ Each script in this folder is designed to perform a specific task with AKS. Befo
 ## Disclaimer
 Please note that this is provided as-is and may not suit all use cases. Use at your own discretion and make sure to thoroughly test before deployment in a production environment.
 
+[add-ons]:add-ons
 [azure-account]: https://azure.microsoft.com/en-us/free
 [azure-cli]: https://docs.microsoft.com/en-us/cli/azure
 [container-storage-interface]: container-storage-interface/troubleshooting.md
