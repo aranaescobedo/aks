@@ -30,15 +30,16 @@ echo @"
 apiVersion: v1
 kind: Pod
 metadata:
-  name: secret-app
+  name: demo-app
   namespace: $namespace
   labels:
-    name: secret-pod
+    name: demo-pod
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
-  serviceAccountName: $serviceAccountName
   containers:
     - image: docker.io/aranaescobedo/workload-id-app-aks:1.0
-      name: secret-container
+      name: demo-container
       env:
         - name: KEYVAULT_NAME
           value: $kvName
