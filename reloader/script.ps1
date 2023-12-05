@@ -2,6 +2,19 @@
 #This scenario is possible provided that you have a Key Vault and a cluster setup that can access your Azure Key Vault using workload identity.
 #If not check -> https://github.com/aranaescobedo/workload-id-csi-aks or https://github.com/aranaescobedo/workload-id-app-aks
 
+
+<#
+    .DESCRIPTION
+        This script is used to add the Reloader tool to an existing cluster.
+	This scenario is possible provided that you have a Key Vault and a cluster setup that can access your Azure Key Vault using workload identity.
+ 	If you don't have the setup, you can check the following resources:
+     	https://github.com/aranaescobedo/workload-id-app-aks
+  	https://github.com/aranaescobedo/workload-id-csi-aks
+    .NOTES
+        AUTHOR: Alexander Arana E
+        LASTEDIT: Dec 05, 2023
+#>
+
 $kvName = "<ADD_KEY_VAULT_NAME>"
 $secretName = "<ADD_SECRET_NAME>"
 $namespaceName = "demo"
