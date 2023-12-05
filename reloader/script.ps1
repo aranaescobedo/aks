@@ -2,11 +2,13 @@
 #This scenario is possible provided that you have a Key Vault and a cluster setup that can access your Azure Key Vault using workload identity.
 #If not check -> https://github.com/aranaescobedo/workload-id-csi-aks or https://github.com/aranaescobedo/workload-id-app-aks
 
+$namespaceName = "demo"
+
 #Create namespace.
-kubectl create namespace <NAMESPACE_NAME>
+kubectl create namespace $namespaceName
 
 #Add label to namecespace.
-kubectl label namespaces <NAMESPACE_NAME> reloader=true
+kubectl label namespaces $namespaceName reloader=true
 
 #Install Reloader with HELM.
 helm repo add stakater https://stakater.github.io/stakater-charts
@@ -22,4 +24,4 @@ helm install <HELM_NAME> stakater/reloader `
 helm uninstall <HELM_NAME> --namespace kube-system
 
 #Apply the Reloader label into the deployment resource
-kubectl apply -f pod.yaml -n <NAMESPACE_NAME>
+kubectl apply -f pod.yaml -n $namespaceName
