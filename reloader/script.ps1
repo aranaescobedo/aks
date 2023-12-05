@@ -6,12 +6,6 @@ $kvName = "<ADD_KEY_VAULT_NAME>"
 $secretName = "<ADD_SECRET_NAME>"
 $namespaceName = "demo"
 
-#Create namespace.
-kubectl create namespace $namespaceName
-
-#Add label to namecespace.
-kubectl label namespaces $namespaceName reloader=true
-
 #Install Reloader with HELM.
 helm repo add stakater https://stakater.github.io/stakater-charts
 helm repo update
@@ -23,7 +17,13 @@ helm install <HELM_NAME> stakater/reloader `
 			 --set reloader.deployment.nodeSelector.agentpool=<NODE_POOL_NAME>
 
 #If you need to delete the HELM chart.
-helm uninstall <HELM_NAME> --namespace kube-system
+#helm uninstall <HELM_NAME> --namespace kube-system
+
+#Create namespace.
+kubectl create namespace $namespaceName
+
+#Add label to namecespace.
+kubectl label namespaces $namespaceName reloader=true
 
 #Apply the Reloader label into the pod resource
 echo @"
