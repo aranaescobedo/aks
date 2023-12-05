@@ -22,4 +22,4 @@ helm install <HELM_NAME> stakater/reloader `
 helm uninstall <HELM_NAME> --namespace kube-system
 
 #Apply the Reloader label into the deployment resource
-kubectl apply -f xx.yaml -n <NAMESPACE_NAME>
+kubectl apply -f pod.yaml -n <NAMESPACE_NAME>
