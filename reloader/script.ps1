@@ -2,6 +2,8 @@
 #This scenario is possible provided that you have a Key Vault and a cluster setup that can access your Azure Key Vault using workload identity.
 #If not check -> https://github.com/aranaescobedo/workload-id-csi-aks or https://github.com/aranaescobedo/workload-id-app-aks
 
+$kvName = "<ADD_KEY_VAULT_NAME>"
+$secretName = "<ADD_SECRET_NAME>"
 $namespaceName = "demo"
 
 #Create namespace.
@@ -23,5 +25,23 @@ helm install <HELM_NAME> stakater/reloader `
 #If you need to delete the HELM chart.
 helm uninstall <HELM_NAME> --namespace kube-system
 
-#Apply the Reloader label into the deployment resource
-kubectl apply -f pod.yaml -n $namespaceName
+#Apply the Reloader label into the pod resource
+echo @"
+apiVersion: v1
+kind: Pod
+metadata:
+  name: secret-app
+  namespace: $namespace
+  labels:
+    name: secret-pod
+spec:
+  serviceAccountName: $serviceAccountName
+  containers:
+    - image: docker.io/aranaescobedo/workload-id-app-aks:1.0
+      name: secret-container
+      env:
+        - name: KEYVAULT_NAME
+          value: $kvName
+        - name: SECRET_NAME
+          value: $mySecretName
+"@ > pod.yaml | kubectl apply -f pod.yaml
