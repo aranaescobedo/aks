@@ -10,22 +10,25 @@
         LASTEDIT: Dec 05, 2023
 #>
 
+
+$helmName = "<ADD_HELM_NAME>"
 $kvName = "<ADD_KEY_VAULT_NAME>"
 $secretName = "<ADD_SECRET_NAME>"
 $namespaceName = "demo"
+$nodePoolName = "<ADD_POOL_NAME>"
 
 #Install Reloader with HELM.
 helm repo add stakater https://stakater.github.io/stakater-charts
 helm repo update
 
-helm install <HELM_NAME> stakater/reloader `
+helm install $helmName stakater/reloader `
 			 --namespace kube-system `
 			 --set reloader.watchGlobally=true `
 			 --set namespaceSelector="reloader=true" `
-			 --set reloader.deployment.nodeSelector.agentpool=<NODE_POOL_NAME>
+			 --set reloader.deployment.nodeSelector.agentpool=$nodePoolName
 
 #If you need to delete the HELM chart.
-#helm uninstall <HELM_NAME> --namespace kube-system
+#helm uninstall $helmName --namespace kube-system
 
 #Create namespace.
 kubectl create namespace $namespaceName
@@ -52,5 +55,5 @@ spec:
         - name: KEYVAULT_NAME
           value: $kvName
         - name: SECRET_NAME
-          value: $mySecretName
+          value: $secretName
 "@ > pod.yaml | kubectl apply -f pod.yaml
