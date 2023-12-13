@@ -44,17 +44,17 @@ echo @"
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demo-deploy
+  name: reloader-deploy
   annotations:
     reloader.stakater.com/auto: "true"
   namespace: $namespaceName
   labels:
-    app: demo-app
+    app: reloader-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: demo-deploy
+      name: reloader-deploy
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -63,8 +63,8 @@ spec:
   template:
     metadata:
       labels:
-        name: demo-deploy
-        app: demo-app
+        name: reloader-deploy
+        app: reloader-app
         azure.workload.identity/use: "true"
     spec:
       serviceAccountName: $serviceAccountName
@@ -75,7 +75,7 @@ spec:
         runAsGroup: 999
         runAsNonRoot: true
       containers:
-      - name: demo-container
+      - name: reloader-container
         image: docker.io/aranaescobedo/workload-id-app-aks:1.0
         imagePullPolicy: IfNotPresent
         envFrom:
