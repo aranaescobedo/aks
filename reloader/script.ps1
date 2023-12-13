@@ -25,10 +25,10 @@ helm repo add stakater https://stakater.github.io/stakater-charts
 helm repo update
 
 helm install $helmName stakater/reloader `
-			 --namespace kube-system `
-			 --set reloader.watchGlobally=true `
-			 --set namespaceSelector="reloader=true" `
-			 --set reloader.deployment.nodeSelector.agentpool=$nodePoolName
+		 --namespace kube-system `
+		 --set reloader.watchGlobally=true `
+		 --set reloader.namespaceSelector="reloader=true" `
+		 --set reloader.deployment.nodeSelector.agentpool=$nodePoolName
 
 #If you need to delete the HELM chart.
 #helm uninstall $helmName --namespace kube-system
