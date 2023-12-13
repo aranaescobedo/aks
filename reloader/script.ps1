@@ -12,10 +12,13 @@
 
 
 $helmName = "<ADD_HELM_NAME>"
+$idClientId = "<ADD_CLIENT_ID_FROM_USER_ASSIGNED_IDENTITY>"
 $kvName = "<ADD_KEY_VAULT_NAME>"
 $secretName = "<ADD_SECRET_NAME>"
+$serviceAccountName = "<SERVICE_ACCOUNT_NAME>"
 $namespaceName = "demo"
 $nodePoolName = "<ADD_POOL_NAME>"
+$tenantId = "<ADD_TENANT_ID>"
 
 #Install Reloader with HELM.
 helm repo add stakater https://stakater.github.io/stakater-charts
@@ -38,22 +41,82 @@ kubectl label namespaces $namespaceName reloader=true
 
 #Apply the Reloader label into the pod resource
 echo @"
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: demo-app
-  namespace: $namespace
-  labels:
-    name: demo-pod
+  name: demo-deploy
   annotations:
     reloader.stakater.com/auto: "true"
+  namespace: $namespaceName
+  labels:
+    app: demo-app
 spec:
-  containers:
-    - image: docker.io/aranaescobedo/workload-id-app-aks:1.0
-      name: demo-container
-      env:
-        - name: KEYVAULT_NAME
-          value: $kvName
-        - name: SECRET_NAME
-          value: $secretName
-"@ > pod.yaml | kubectl apply -f pod.yaml
+  replicas: 1
+  selector:
+    matchLabels:
+      name: demo-deploy
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        name: demo-deploy
+        app: demo-app
+        azure.workload.identity/use: "true"
+    spec:
+      serviceAccountName: $serviceAccountName
+      nodeSelector:
+        agentpool: $nodePoolName
+      securityContext:
+        runAsUser: 999
+        runAsGroup: 999
+        runAsNonRoot: true
+      containers:
+      - name: demo-container
+        image: docker.io/aranaescobedo/workload-id-app-aks:1.0
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: secret-creds
+        volumeMounts:
+          - name: secrets-store-inline
+            mountPath: "/mnt/secrets-store"
+            readOnly: true
+      volumes:
+        - name: secrets-store-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: secret-spc
+---
+apiVersion: secrets-store.csi.x-k8s.io/v1
+kind: SecretProviderClass
+metadata:
+  name: secret-spc
+  namespace: $namespaceName
+spec:
+  provider: azure
+  secretObjects:
+  - secretName: secret-creds
+    data:
+    - key: SECRET_NAME
+      objectName: $secretName 
+    type: Opaque
+  parameters:
+    usePodIdentity: "false"
+    useVMManagedIdentity: "false"
+    clientID: $idClientId 
+    keyvaultName: $kvName
+    cloudName: ""
+    objects:  |
+      array:
+        - |
+          objectName: $secretName
+          objectType: secret
+          objectVersion: ""
+    tenantId: $tenantId
+"@ > deploy.yaml | kubectl apply -f deploy.yaml
