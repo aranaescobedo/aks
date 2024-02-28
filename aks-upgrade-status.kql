@@ -1,0 +1,8 @@
+AzureActivity
+| where OperationNameValue  in ('Microsoft.ContainerService/managedClusters/write', 'Microsoft.ContainerService/managedClusters/agentpools/write')
+| extend properties = parse_json(Properties)
+|project
+  Time = TimeGenerated + 1h, //Sweden, sthlm, UTC+1, Summer Timer UTC+2
+  ActivityStatus = ActivityStatusValue,
+  Message = properties.message
+| order by Time asc
