@@ -19,7 +19,7 @@ Each script in this folder is designed to perform a specific task with AKS. Befo
   
 - **[container-storage-interface]**: Contains a collection of solutions for common troubleshooting scenarios that may arise when using CSI on AKS.
 
-- **[reloader]**: xxx
+- **[reloader]**: This folder contains scripts that are used to interact with Stakater Reloader.
   
 - **[toolbox]**: Create a toolbox container to more easily troubleshoot issues within your AKS cluster, including Azure DevOps pipelines.
   
