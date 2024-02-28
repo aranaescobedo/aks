@@ -19,7 +19,7 @@ Each script in this folder is designed to perform a specific task with AKS. Befo
   
 - **[container-storage-interface]**: Contains a collection of solutions for common troubleshooting scenarios that may arise when using CSI on AKS.
   
-- **[maintenance-window]**: xxx.
+- **[planned-maintenance]**: xxx.
 
 - **[reloader]**: This folder contains scripts that are used to interact with Stakater Reloader.
   
@@ -50,7 +50,7 @@ Please note that this is provided as-is and may not suit all use cases. Use at y
 [azure-account]: https://azure.microsoft.com/en-us/free
 [azure-cli]: https://docs.microsoft.com/en-us/cli/azure
 [container-storage-interface]: container-storage-interface/troubleshooting.md
-[maintenance-window]:maintenance-window
+[planned-maintenance]:planned-maintenance
 [create-node-pool.ps1]:create-node-pool.ps1
 [delete-namespace.ps1]:delete-namespace.ps1
 [images-vulnerability-findings-mdvm-all.kql]:images-vulnerability-findings-mdvm-all.kql
