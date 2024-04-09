@@ -5,4 +5,4 @@ AzureActivity
   Time = TimeGenerated + 1h, //Sweden, sthlm, UTC+1, Summer Timer UTC+2
   ActivityStatus = ActivityStatusValue,
   Message = properties.message
-| order by Time asc
+| order by Time desc
