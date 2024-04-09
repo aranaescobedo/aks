@@ -31,6 +31,8 @@ Each script in this folder is designed to perform a specific task with AKS. Befo
   
 - **[delete-namespace.ps1]**: This script resolves a stuck Kubernetes namespace with a "Terminating" status.
 
+- **[establish-federated-id.ps1]**: This script resolves a stuck Kubernetes namespace with a "Terminating" status.
+
 - **[images-vulnerability-findings-mdvm-all.kql]**: Identifies vulnerabilities in container images for specific CVE vulnerabilities, powered by Microsoft Defender Vulnerability Management
 
 - **[images-vulnerability-findings-mdvm.kql]**: Identifies vulnerabilities in container images running on your Kubernetes clusters for specific CVE vulnerabilities, powered by powered by Microsoft Defender Vulnerability Management.
@@ -40,8 +42,6 @@ Each script in this folder is designed to perform a specific task with AKS. Befo
 - **[images-vulnerability-findings-qualys.kql]**: Identifies vulnerabilities in container images running on your Kubernetes clusters for specific CVE vulnerabilities, powered by Qualys.
   
 - **[kubectl-commands.ps1]**: Manage Kubernetes clusters and resources with kubectl.
-  
-- TODO: ADD ESTABLISHED FEDERATED ID SCRIPT!
 
 ## Disclaimer
 Please note that this is provided as-is and may not suit all use cases. Use at your own discretion and make sure to thoroughly test before deployment in a production environment.
@@ -53,6 +53,7 @@ Please note that this is provided as-is and may not suit all use cases. Use at y
 [planned-maintenance]:planned-maintenance
 [create-node-pool.ps1]:create-node-pool.ps1
 [delete-namespace.ps1]:delete-namespace.ps1
+[establish-federated-id.ps1]:establish-federated-id.ps1
 [images-vulnerability-findings-mdvm-all.kql]:images-vulnerability-findings-mdvm-all.kql
 [images-vulnerability-findings-mdvm.kql]:images-vulnerability-findings-mdvm.kql
 [images-vulnerability-findings-qualys-all.kql]:images-vulnerability-findings-qualys-all.kql
