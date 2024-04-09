@@ -31,7 +31,7 @@ Each script in this folder is designed to perform a specific task with AKS. Befo
   
 - **[delete-namespace.ps1]**: This script resolves a stuck Kubernetes namespace with a "Terminating" status.
 
-- **[establish-federated-id.ps1]**: This script resolves a stuck Kubernetes namespace with a "Terminating" status.
+- **[establish-federated-id.ps1]**: This script is used to establish federated identity credential for a new application on the AKS cluster.
 
 - **[images-vulnerability-findings-mdvm-all.kql]**: Identifies vulnerabilities in container images for specific CVE vulnerabilities, powered by Microsoft Defender Vulnerability Management
 
