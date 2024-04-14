@@ -28,8 +28,6 @@ $resouceGroup = "rg-cluster-$($environment)-we"
 az account set --subscription $subscriptionNam
 "[*] Set subscription $subscriptionName"
 
-#TODO During DST (Daylight saving time), this offset changes to +02:00, equivalent to UTC+2?
-
 az aks update --resource-group $resouceGroup --name $clusterName --auto-upgrade-channel stable
 
 #Planned cluster upgrades
