@@ -1,10 +1,10 @@
 <#
     .DESCRIPTION
-        XXXXX
+        This script is used to update scheduled planned maintenance on your cluster, enabling both AKS and Node OS upgrades.
 
     .NOTES
         AUTHOR: Alexander Arana E
-        LASTEDIT: March XX, 2024
+        LASTEDIT: March 23, 2024
 #>
 
 
