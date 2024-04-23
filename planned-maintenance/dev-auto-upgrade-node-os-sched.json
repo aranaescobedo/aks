@@ -1,0 +1,22 @@
+{
+  "properties": {
+    "maintenanceWindow": {
+      "schedule": {
+        "weekly":
+          {
+            "intervalWeeks": 1,
+            "dayOfWeek": "Monday"
+          }
+      },
+      "durationHours": 4,
+      "utcOffset": "+01:00",
+      "startTime": "00:01",
+      "notAllowedDates": [
+        {
+          "start": "2024-07-15",
+          "end": "2024-08-15"
+        }
+      ]
+    }
+  }
+}
