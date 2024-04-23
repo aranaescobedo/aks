@@ -3,7 +3,7 @@
         This script is used to establish federated identity credential for a new application on the AKS cluster.
     .NOTES
         AUTHOR: Alexander Arana E
-        LASTEDIT: Dec 21, 2022
+        LASTEDIT: March 23, 2024
 #>
 
 param(
