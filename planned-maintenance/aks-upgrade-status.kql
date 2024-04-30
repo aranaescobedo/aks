@@ -1,5 +1,5 @@
 AzureActivity
-| where OperationNameValue  in ('Microsoft.ContainerService/managedClusters/write', 'Microsoft.ContainerService/managedClusters/agentpools/write','Microsoft.ContainerService/managedClusters/agentPools/upgradeNodeImageVersion/action')
+| where OperationNameValue in ('Microsoft.ContainerService/managedClusters/write', 'Microsoft.ContainerService/managedClusters/agentpools/write','Microsoft.ContainerService/managedClusters/agentPools/upgradeNodeImageVersion/action')
 | extend properties = parse_json(Properties)
 |project
   Time = TimeGenerated + 1h, //Sweden, sthlm, UTC+1, Summer Timer UTC+2
