@@ -48,3 +48,5 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-09-01' = {
     ]
   }
 }
+
+output id string = nsg.id
