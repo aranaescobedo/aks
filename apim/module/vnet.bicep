@@ -1,8 +1,8 @@
+param agwSubnetName string
 param location string
 param nsgSourceId string
 param vnetAddressPrefix string
 param vnetName string
-
 
 resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
   name: vnetName
@@ -15,7 +15,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
     }
     subnets: [
       {
-        name: 'snet-agw-test-we-01'
+        name: agwSubnetName
         properties: {
           addressPrefix: '10.10.1.0/26'
         }
