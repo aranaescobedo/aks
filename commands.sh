@@ -18,3 +18,10 @@ echo <PASSWORD> | base64 --decode
 #GOOD TO KNOW.
 #If you are using bash (the default), your prompt will tell you if you are acting as root.
 #If it ends in a '$' you are running as a normal user. If it ends in a '#' you are running as root.
+
+
+#
+cn
+
+#
+sudo -u az-<USER_NAME> /bin/bash
