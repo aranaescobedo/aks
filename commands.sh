@@ -30,3 +30,6 @@ tcptraceroute <HOSTNAME_WTIHOUT_HTTPS/HTTP> <PORT>
 
 #Use netcat to establish a connection to the specified hostname and port.
 nc <HOSTNAME_WTIHOUT_HTTPS/HTTP> <PORT>
+
+#Display the file access control list (ACL) for the specified folder or file
+getfacl <FOLDER/FILE_NAME>
