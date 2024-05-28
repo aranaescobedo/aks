@@ -20,8 +20,14 @@ echo <PASSWORD> | base64 --decode
 #If it ends in a '$' you are running as a normal user. If it ends in a '#' you are running as root.
 
 
-#
-cn
-
-#
+#Switch to the specified user and open a new Bash shell session.
 sudo -u az-<USER_NAME> /bin/bash
+
+#Perform a traceroute to the specified hostname to trace the network path using ICMP or UDP packets
+traceroute <HOSTNAME_WTIHOUT_HTTPS/HTTP> <PORT>
+
+#Perform a TCP traceroute to the specified hostname and port to trace the network path using TCP packets.
+tcptraceroute <HOSTNAME_WTIHOUT_HTTPS/HTTP> <PORT>
+
+#Use netcat to establish a connection to the specified hostname and port.
+nc <HOSTNAME_WTIHOUT_HTTPS/HTTP> <PORT>
