@@ -11,10 +11,11 @@ var agw_snet_name = 'snet-agw-test-we-01'
 var apim_name = 'apim-test-we-01'
 var nsg_name = 'nsg-demo-test-we-01'
 var pip_name = 'pip-agw-test-we-01'
+var snet_resource_id = resourceId('Microsoft.Network/virtualNetworks/subnets', vnet_name, agw_snet_name)
 var vnet_name = 'vnet-test-we-01'
 
 resource rsg 'Microsoft.Resources/resourceGroups@2023-07-01' = {
-  name: 'rg-demo-test-we'
+  name: 'rg-apim-test-we'
   location: location
 }
 
@@ -60,7 +61,7 @@ module agw 'module/agw.bicep' = {
     location: location
     name: agw_name
     pipId: agw_pip.outputs.id
-    snetId: agw_subnet.id
+    snetId: snet_resource_id
   }
 }
 
@@ -70,7 +71,7 @@ module agw 'module/agw.bicep' = {
 //   params: {
 //     location: location
 //     name: apimName
-//     subneResoucetId: 
+//     snetResourceId: snet_resource_id
 //   }
 // }
 

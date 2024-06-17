@@ -1,5 +1,5 @@
-param location string
-param name string
+param location string = 'westeurope'
+param name string = 'pip-agw-test-we-01'
 
 resource public_ip 'Microsoft.Network/publicIPAddresses@2023-11-01' = {
   name: name
@@ -8,6 +8,7 @@ resource public_ip 'Microsoft.Network/publicIPAddresses@2023-11-01' = {
     name: 'Standard'
   }
   properties: {
+    publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
   }
 }

@@ -1,6 +1,6 @@
 param location string
 param name string
-param subneResoucetId string
+param snetResourceId string
 
 resource apim 'Microsoft.ApiManagement/service@2022-08-01' = {
   name: name
@@ -14,7 +14,7 @@ resource apim 'Microsoft.ApiManagement/service@2022-08-01' = {
     publisherName: 'He man'
     virtualNetworkType: 'Internal'
     virtualNetworkConfiguration: {
-      subnetResourceId: subneResoucetId
+      subnetResourceId: snetResourceId
     }
   }
 }
