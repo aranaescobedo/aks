@@ -20,7 +20,7 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-09-01' = {
         }
       }
       {
-        name: 'AllowAzureLoadBalancer6390Inbound'
+        name: 'AllowTagAzureLoadBalancer6390Inbound'
         properties: {
           direction: 'Inbound'
           priority: 110
@@ -45,6 +45,61 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-09-01' = {
       //     access: 'Allow'
       //   }
       // }
+      {
+        name: 'AllowTagStorage443Outbound'
+        properties: {
+          direction: 'Outbound'
+          priority: 120
+          destinationPortRange: '443'
+          protocol: 'TCP'
+          sourceAddressPrefix: 'VirtualNetwork'
+          sourcePortRange: '*'
+          destinationAddressPrefix: 'Storage'
+          access: 'Allow'
+        }
+      }
+      {
+        name: 'AllowTagSql1433Outbound'
+        properties: {
+          direction: 'Outbound'
+          priority: 130
+          destinationPortRange: '1433'
+          protocol: 'TCP'
+          sourceAddressPrefix: 'VirtualNetwork'
+          sourcePortRange: '*'
+          destinationAddressPrefix: 'Sql'
+          access: 'Allow'
+        }
+      }
+      {
+        name: 'AllowTagAzureKeyVaultOutbound'
+        properties: {
+          direction: 'Outbound'
+          priority: 140
+          destinationPortRange: '433'
+          protocol: 'TCP'
+          sourceAddressPrefix: 'VirtualNetwork'
+          sourcePortRange: '*'
+          destinationAddressPrefix: 'AzureKeyVault'
+          access: 'Allow'
+        }
+      }
+      {
+        name: 'AllowTagAzureMonitorOutbound'
+        properties: {
+          direction: 'Outbound'
+          priority: 150
+          destinationPortRanges: [
+            '1886' 
+            '443'
+          ]
+          protocol: 'TCP'
+          sourceAddressPrefix: 'VirtualNetwork'
+          sourcePortRange: '*'
+          destinationAddressPrefix: 'AzureMonitor'
+          access: 'Allow'
+        }
+      }
     ]
   }
 }

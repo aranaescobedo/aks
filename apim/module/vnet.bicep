@@ -35,6 +35,12 @@ resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
           addressPrefix: '10.10.1.128/27'
         }
       }
+      {
+        name: 'snet-vm-test-we-01'
+        properties: {
+          addressPrefix: '10.10.1.160/27'
+        }
+      }
     ]
   }
 }
@@ -42,3 +48,6 @@ resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
 output id string = vnet.id
 output name string = vnet.name
 output subnetIdForAgw string = vnet.properties.subnets[0].id
+output subnetIdForApim string = vnet.properties.subnets[1].id
+output subnetIdForAks string = vnet.properties.subnets[2].id
+output subnetIdForVm string = vnet.properties.subnets[3].id

@@ -9,7 +9,7 @@ param dateTime string = utcNow()
 var agw_name = 'agw-test-we-01'
 var agw_snet_name = 'snet-agw-test-we-01'
 var apim_name = 'apim-test-we-01'
-var nsg_name = 'nsg-demo-test-we-01'
+var nsg_name = 'nsg-apim-test-we-01'
 var pip_name = 'pip-agw-test-we-01'
 var vnet_name = 'vnet-test-we-01'
 
@@ -48,11 +48,6 @@ module agw_pip 'module/pip.bicep' = {
   }
 }
 
-resource agw_subnet 'Microsoft.Network/virtualNetworks/subnets@2023-11-01' existing = {
-  scope: rsg
-  name: agw_snet_name
-}
-
 module agw 'module/agw.bicep' = {
   scope: rsg
   name: '${agw_name}-${substring(uniqueString(dateTime),0,4)}'
@@ -64,14 +59,14 @@ module agw 'module/agw.bicep' = {
   }
 }
 
-// module apim 'module/apim.bicep' = {
-//   scope: rsg
-//   name: '${apimName}-${substring(uniqueString(dateTime),0,4)}'
-//   params: {
-//     location: location
-//     name: apimName
-//     snetResourceId: snet_resource_id
-//   }
-// }
+module apim 'module/apim.bicep' = {
+  scope: rsg
+  name: '${apim_name}-${substring(uniqueString(dateTime),0,4)}'
+  params: {
+    location: location
+    name: apim_name
+    snetResourceId: agw_vnet.outputs.subnetIdForApim
+  }
+}
 
 

@@ -8,7 +8,7 @@ resource agw 'Microsoft.Network/applicationGateways@2023-11-01' = {
   location: location
   properties: {
     sku: {
-      name: 'Standard_v2'
+      name: 'Standard_v2'  //TODO: change to WAF and add a WAF and try out...
       tier: 'Standard_v2'
     }
     gatewayIPConfigurations: [
