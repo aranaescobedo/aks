@@ -3,7 +3,7 @@ param name string
 param pipId string
 param snetId string
 
-resource agw_testing 'Microsoft.Network/applicationGateways@2023-11-01' = {
+resource agw 'Microsoft.Network/applicationGateways@2023-11-01' = {
   name: name
   location: location
   properties: {
@@ -16,8 +16,7 @@ resource agw_testing 'Microsoft.Network/applicationGateways@2023-11-01' = {
         name: 'appGatewayIpConfig'
         properties: {
           subnet: {
-            //id: snetId
-            id: resourceId('Microsoft.Network/virtualNetworks/subnets', 'vnet-test-we-01', 'snet-agw-test-we-01')
+            id: snetId
           }
         }
       }
@@ -28,7 +27,7 @@ resource agw_testing 'Microsoft.Network/applicationGateways@2023-11-01' = {
         properties: {
           privateIPAllocationMethod: 'Dynamic'
           publicIPAddress: {
-            id: resourceId('Microsoft.Network/publicIPAddresses', 'pip-agw-test-we-01')
+            id: pipId
           }
         }
       }
@@ -43,13 +42,13 @@ resource agw_testing 'Microsoft.Network/applicationGateways@2023-11-01' = {
     ]
     backendAddressPools: [
       {
-        name: 'myBackendPool'
+        name: 'backendPool'
         properties: {}
       }
     ]
     backendHttpSettingsCollection: [
       {
-        name: 'myHTTPSetting'
+        name: 'httpSetting'
         properties: {
           port: 80
           protocol: 'Http'
@@ -61,7 +60,7 @@ resource agw_testing 'Microsoft.Network/applicationGateways@2023-11-01' = {
     ]
     httpListeners: [
       {
-        name: 'myListener'
+        name: 'listener'
         properties: {
           frontendIPConfiguration: {
             id: resourceId('Microsoft.Network/applicationGateways/frontendIPConfigurations', name, 'appGwPublicFrontendIp')
@@ -81,13 +80,13 @@ resource agw_testing 'Microsoft.Network/applicationGateways@2023-11-01' = {
           ruleType: 'Basic'
           priority: 1
           httpListener: {
-            id: resourceId('Microsoft.Network/applicationGateways/httpListeners', name, 'myListener')
+            id: resourceId('Microsoft.Network/applicationGateways/httpListeners', name, 'listener')
           }
           backendAddressPool: {
-            id: resourceId('Microsoft.Network/applicationGateways/backendAddressPools', name, 'myBackendPool')
+            id: resourceId('Microsoft.Network/applicationGateways/backendAddressPools', name, 'backendPool')
           }
           backendHttpSettings: {
-            id: resourceId('Microsoft.Network/applicationGateways/backendHttpSettingsCollection', name, 'myHTTPSetting')
+            id: resourceId('Microsoft.Network/applicationGateways/backendHttpSettingsCollection', name, 'httpSetting')
           }
         }
       }
@@ -95,6 +94,7 @@ resource agw_testing 'Microsoft.Network/applicationGateways@2023-11-01' = {
     enableHttp2: false
     autoscaleConfiguration: {
       minCapacity: 1
+      maxCapacity: 2
     }
   }
 }
