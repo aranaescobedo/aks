@@ -3,6 +3,9 @@
 #It displays the username of the current user when this command is invoked.
 whoami
 
+#Open the current directory in File Explorer (If using Windows Terminal)
+explorer.exe .
+
 #Displays the user's unique identification number.
 echo $UID
 
@@ -33,3 +36,6 @@ nc <HOSTNAME_WTIHOUT_HTTPS/HTTP> <PORT>
 
 #Display the file access control list (ACL) for the specified folder or file
 getfacl <FOLDER/FILE_NAME>
+
+Send a verbose GET request and includes the response headers.
+curl https://<HOST_NAME> -iv
