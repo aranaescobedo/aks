@@ -8,7 +8,7 @@ resource agw_test 'Microsoft.Network/applicationGateways@2023-09-01' = {
   location: location
   properties: {
     sku: {
-      name: 'Standard_v2' //TODO change to WAF and add a WAF and try out...
+      name: 'Standard_v2'
     }
     gatewayIPConfigurations: [
       {

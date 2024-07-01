@@ -1,4 +1,4 @@
-param agwSubnetName string
+param apimAddressPrefix string
 param location string
 param nsgSourceId string
 param vnetAddressPrefix string
@@ -15,7 +15,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
     }
     subnets: [
       {
-        name: agwSubnetName
+        name: 'snet-agw-test-we-01'
         properties: {
           addressPrefix: '10.10.1.0/26'
         }
@@ -23,7 +23,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
       {
         name: 'snet-apim-test-we-01'
         properties: {
-          addressPrefix: '10.10.1.64/26'
+          addressPrefix: apimAddressPrefix
           networkSecurityGroup: {
             id: nsgSourceId
           }

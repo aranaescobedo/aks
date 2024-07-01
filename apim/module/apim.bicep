@@ -16,5 +16,10 @@ resource apim 'Microsoft.ApiManagement/service@2022-08-01' = {
     virtualNetworkConfiguration: {
       subnetResourceId: snetResourceId
     }
+    publicIpAddressId: null //TODO: LOOKS LIKE YOU CANT'T DISABLE PUBLIC IP ON APIM? CHECK IT OUT?
   }
 }
+
+output gatewayURL string = apim.properties.gatewayUrl
+output devPortalURL string = apim.properties.developerPortalUrl
+output adminPortalURL string = apim.properties.managementApiUrl

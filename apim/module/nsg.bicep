@@ -1,3 +1,4 @@
+param apimAddressPrefix string
 param location string
 param name string
 
@@ -32,19 +33,19 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-09-01' = {
           access: 'Allow'
         }
       }
-      // {
-      //   name: 'AllowAppGatewayToAPIM'
-      //   properties: {
-      //     direction: 'Inbound'
-      //     priority: 120
-      //     destinationPortRange: '443'
-      //     protocol: 'TCP'
-      //     sourceAddressPrefix: 'AzureLoadBalancer' //TODO VNET PREFIX FROM AGIC VNET
-      //     sourcePortRange: '*'
-      //     destinationAddressPrefix: 'VirtualNetwork'
-      //     access: 'Allow'
-      //   }
-      // }
+      {
+        name: 'AllowAppGatewayToAPIM'
+        properties: {
+          direction: 'Inbound'
+          priority: 120
+          destinationPortRange: '443'
+          protocol: 'TCP'
+          sourceAddressPrefix: apimAddressPrefix
+          sourcePortRange: '*'
+          destinationAddressPrefix: 'VirtualNetwork'
+          access: 'Allow'
+        }
+      }
       {
         name: 'AllowTagStorage443Outbound'
         properties: {

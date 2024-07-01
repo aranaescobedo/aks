@@ -1,3 +1,4 @@
+param apimGatewayURL string
 param location string
 param name string
 param pipId string
@@ -45,6 +46,16 @@ resource agw 'Microsoft.Network/applicationGateways@2023-11-01' = {
         name: 'backendPool'
         properties: {}
       }
+      {
+        name: 'APIM-backend-pool'
+        properties: {
+          backendAddresses: [
+            {
+             fqdn: apimGatewayURL
+            }
+          ]
+        }
+      }
     ]
     backendHttpSettingsCollection: [
       {
@@ -75,7 +86,7 @@ resource agw 'Microsoft.Network/applicationGateways@2023-11-01' = {
     ]
     requestRoutingRules: [
       {
-        name: 'myRoutingRule'
+        name: 'routingRule'
         properties: {
           ruleType: 'Basic'
           priority: 1
