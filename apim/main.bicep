@@ -8,7 +8,7 @@ param dateTime string = utcNow()
 //VAR
 var agw_name = 'agw-test-we-01'
 var apim_name = 'apim-test-we-01'
-var apim_snet_ip_address = '10.10.1.64/26'
+var apim_snet_ip_address = '10.10.1.32/27'
 var nsg_name = 'nsg-apim-test-we-01'
 var pip_name = 'pip-agw-test-we-01'
 var vnet_name = 'vnet-test-we-01'

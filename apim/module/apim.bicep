@@ -16,7 +16,10 @@ resource apim 'Microsoft.ApiManagement/service@2022-08-01' = {
     virtualNetworkConfiguration: {
       subnetResourceId: snetResourceId
     }
-    publicIpAddressId: null //TODO: LOOKS LIKE YOU CANT'T DISABLE PUBLIC IP ON APIM? CHECK IT OUT?
+    //Public IP addresses are used for internal communication on port 3443 - for managing configuration (for example, through Azure Resource Manager).
+    //In the internal VNet configuration, public IP addresses are only used for Azure internal management operations and don't expose your instance to the internet.
+    //https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-ip-addresses?WT.mc_id=Portal-Microsoft_Azure_ApiManagement#ip-addresses-of-api-management-service-in-vnet
+    publicIpAddressId: null
   }
 }
 

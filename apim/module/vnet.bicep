@@ -17,7 +17,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
       {
         name: 'snet-agw-test-we-01'
         properties: {
-          addressPrefix: '10.10.1.0/26'
+          addressPrefix: '10.10.1.0/27'
         }
       }
       {
@@ -30,15 +30,15 @@ resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
         }
       }
       {
-        name: 'snet-cluster-test-we-01'
+        name: 'snet-vm-test-we-01'
         properties: {
-          addressPrefix: '10.10.1.128/27'
+          addressPrefix: '10.10.1.64/27'
         }
       }
       {
-        name: 'snet-vm-test-we-01'
+        name: 'snet-cluster-test-we-01'
         properties: {
-          addressPrefix: '10.10.1.160/27'
+          addressPrefix: '10.10.1.128/26'
         }
       }
     ]
