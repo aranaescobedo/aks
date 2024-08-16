@@ -11,6 +11,7 @@ var apim_name = 'apim-test-we-01'
 var apim_snet_ip_address = '10.10.1.32/27'
 var nsg_name = 'nsg-apim-test-we-01'
 var pip_name = 'pip-agw-test-we-01'
+var subscriptionId = subscription().subscriptionId
 var vnet_name = 'vnet-test-we-01'
 
 resource rsg 'Microsoft.Resources/resourceGroups@2023-07-01' = {
@@ -23,7 +24,6 @@ module nsg 'br/public:avm/res/network/network-security-group:0.4.0' =  {
   name: '${nsg_name}-${substring(uniqueString(dateTime),0,4)}'
   params: {
     name: nsg_name
-    location: location
     securityRules: [
       {
         name: 'AllowAnyCustom3443Inbound'
@@ -184,7 +184,6 @@ module agw_pip 'br/public:avm/res/network/public-ip-address:0.5.1' = {
   }
 }
 
-
 // module agw_pip 'module/pip.bicep' = {
 //   scope: rsg
 //   name:  '${pip_name}-${substring(uniqueString(dateTime),0,4)}'
@@ -221,16 +220,121 @@ module apim 'br/public:avm/res/api-management/service:0.3.0' = {
 //   }
 // }
 
-//*** COMMENT OUT ***
+
+module agw 'br/public:avm/res/network/application-gateway:0.1.0' = {
+  scope: rsg
+  name: '${agw_name}-${substring(uniqueString(dateTime),0,4)}'
+  params: {
+    name: agw_name
+    sku: 'Standard_v2'
+    gatewayIPConfigurations: [
+      {
+        name: 'appGatewayIpConfig'
+        properties: {
+          subnet: {
+            id: vnet.outputs.subnetResourceIds[0]
+          }
+        }
+      }
+    ]
+    frontendIPConfigurations: [
+      {
+        name: 'appGwPublicFrontendIp'
+        properties: {
+          privateIPAllocationMethod: 'Dynamic'
+          publicIPAddress: {
+            id: agw_pip.outputs.resourceId
+          }
+        }
+      }
+    ]
+    frontendPorts: [
+      {
+        name: 'port_80'
+        properties: {
+          port: 80
+        }
+      }
+    ]
+    backendAddressPools: [
+      {
+        name: 'backendPool'
+        properties: {}
+      }
+      {
+        name: 'APIM-backend-pool'
+        properties: {
+          backendAddresses: [
+            {
+             fqdn: 'apim-test-we-01.azure-api.net' //TODO: HARDCODED! NEED TO FIND SOLUTION!!!
+            }
+          ]
+        }
+      }
+    ]
+    backendHttpSettingsCollection: [
+      {
+        name: 'httpSetting'
+        properties: {
+          port: 80
+          protocol: 'Http'
+          cookieBasedAffinity: 'Disabled'
+          pickHostNameFromBackendAddress: false
+          requestTimeout: 20
+        }
+      }
+    ]
+    httpListeners: [
+      {
+        name: 'listener'
+        properties: {
+          frontendIPConfiguration: {
+            //id: resourceId('Microsoft.Network/applicationGateways/frontendIPConfigurations', agw_name, 'appGwPublicFrontendIp')
+            id: resourceId(subscriptionId, rsg.name, 'Microsoft.Network/applicationGateways/frontendIPConfigurations', agw_name, 'appGwPublicFrontendIp')
+          }
+          frontendPort: {
+            //id: resourceId('Microsoft.Network/applicationGateways/frontendPorts', agw_name, 'port_80')
+             id: resourceId(subscriptionId, rsg.name, 'Microsoft.Network/applicationGateways/frontendPorts', agw_name, 'port_80')
+          }
+          protocol: 'Http'
+          requireServerNameIndication: false
+        }
+      }
+    ]
+    requestRoutingRules: [
+      {
+        name: 'routingRule'
+        properties: {
+          ruleType: 'Basic'
+          priority: 1
+          httpListener: {
+            id: resourceId(subscriptionId, rsg.name,'Microsoft.Network/applicationGateways/httpListeners', agw_name, 'listener')
+          }
+          backendAddressPool: {
+            id: resourceId(subscriptionId, rsg.name,'Microsoft.Network/applicationGateways/backendAddressPools', agw_name, 'backendPool')
+          }
+          backendHttpSettings: {
+            id: resourceId(subscriptionId, rsg.name,'Microsoft.Network/applicationGateways/backendHttpSettingsCollection', agw_name, 'httpSetting')
+          }
+        }
+      }
+    ]
+    autoscaleMinCapacity: 1
+    autoscaleMaxCapacity: 2
+  }
+}
+
+
+
 // module agw 'module/agw.bicep' = {
 //   scope: rsg
 //   name: '${agw_name}-${substring(uniqueString(dateTime),0,4)}'
 //   params: {
-//     apimGatewayURL: replace(apim.outputs.gatewayURL, 'https://', '')
+//     apimGatewayURL: 'apim-test-we-01.azure-api.net'
 //     location: location
 //     name: agw_name
-//     pipId: agw_pip.outputs.id
-//     snetId: vnet.outputs.subnetIdForAgw
+//     pipId: agw_pip.outputs.resourceId
+//     snetId: vnet.outputs.subnetResourceIds[0]
 //   }
 // }
 
