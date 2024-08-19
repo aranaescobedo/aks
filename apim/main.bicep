@@ -123,16 +123,6 @@ module nsg 'br/public:avm/res/network/network-security-group:0.4.0' =  {
   }
 }
 
-// module nsg 'module/nsg.bicep' = {
-//   scope: rsg
-//   name: '${nsg_name}-${substring(uniqueString(dateTime),0,4)}'
-//   params: {
-//     apimAddressPrefix: apim_snet_ip_address
-//     location: location
-//     name: nsg_name
-//   }
-// }
-
 module vnet 'br/public:avm/res/network/virtual-network:0.2.0' = {
   scope: rsg
   name: '${vnet_name}-${substring(uniqueString(dateTime),0,4)}'
@@ -164,18 +154,6 @@ module vnet 'br/public:avm/res/network/virtual-network:0.2.0' = {
   }
 }
 
-// module vnet 'module/vnet.bicep' = {
-//   scope: rsg
-//   name: '${vnet_name}-${substring(uniqueString(dateTime),0,4)}'
-//   params: {
-//     apimAddressPrefix: apim_snet_ip_address
-//     location: location
-//     nsgSourceId: nsg.outputs.resourceId
-//     vnetAddressPrefix: '10.10.1.0/24'
-//     vnetName: vnet_name
-//   }
-// }
-
 module agw_pip 'br/public:avm/res/network/public-ip-address:0.5.1' = {
   scope: rsg
   name: '${pip_name}-${substring(uniqueString(dateTime),0,4)}'
@@ -183,15 +161,6 @@ module agw_pip 'br/public:avm/res/network/public-ip-address:0.5.1' = {
     name: pip_name
   }
 }
-
-// module agw_pip 'module/pip.bicep' = {
-//   scope: rsg
-//   name:  '${pip_name}-${substring(uniqueString(dateTime),0,4)}'
-//   params: {
-//     location: location
-//     name: pip_name
-//   }
-// }
 
 //Public IP addresses are used for internal communication on port 3443 - for managing configuration (for example, through Azure Resource Manager).
 //In the internal VNet configuration, public IP addresses are only used for Azure internal management operations and don't expose your instance to the internet.
@@ -209,17 +178,6 @@ module apim 'br/public:avm/res/api-management/service:0.3.0' = {
     skuCapacity: 1
   }
 }
-
-// module apim 'module/apim.bicep' = {
-//   scope: rsg
-//   name: '${apim_name}-${substring(uniqueString(dateTime),0,4)}'
-//   params: {
-//     location: location
-//     name: apim_name
-//     snetResourceId: vnet.outputs.subnetIdForApim
-//   }
-// }
-
 
 module agw 'br/public:avm/res/network/application-gateway:0.1.0' = {
   scope: rsg
@@ -266,7 +224,7 @@ module agw 'br/public:avm/res/network/application-gateway:0.1.0' = {
         properties: {
           backendAddresses: [
             {
-             fqdn: 'apim-test-we-01.azure-api.net' //TODO: HARDCODED! NEED TO FIND SOLUTION!!!
+             fqdn: '${apim_name}.azure-api.net'
             }
           ]
         }
@@ -323,19 +281,4 @@ module agw 'br/public:avm/res/network/application-gateway:0.1.0' = {
     autoscaleMaxCapacity: 2
   }
 }
-
-
-
-// module agw 'module/agw.bicep' = {
-//   scope: rsg
-//   name: '${agw_name}-${substring(uniqueString(dateTime),0,4)}'
-//   params: {
-//     apimGatewayURL: 'apim-test-we-01.azure-api.net'
-//     location: location
-//     name: agw_name
-//     pipId: agw_pip.outputs.resourceId
-//     snetId: vnet.outputs.subnetResourceIds[0]
-//   }
-// }
-
 
