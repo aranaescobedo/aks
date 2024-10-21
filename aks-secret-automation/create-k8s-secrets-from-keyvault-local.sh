@@ -32,7 +32,7 @@ az keyvault secret download \
 echo "[*] Decrypting the private key (removing passphrase)"
 openssl rsa -in $FOLDER_NAME/encrypted-tls.key -out $FOLDER_NAME/tls.key
 
-# *** This code snippet will be running from the ADO pipeline. ***
+# *** This code snippet will be commented because it will be handled by the Azure pipeline. ***
 echo "[*] Create secret $K8S_SECRET_NAME on cluster"
 kubectl create secret tls $K8S_SECRET_NAME \
    --cert=$FOLDER_NAME/tls.crt \
