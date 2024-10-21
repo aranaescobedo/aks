@@ -33,13 +33,13 @@ echo "[*] Decrypting the private key (removing passphrase)"
 openssl rsa -in $FOLDER_NAME/encrypted-tls.key -out $FOLDER_NAME/tls.key
 
 # *** This code snippet will be running from the ADO pipeline. ***
-#echo "[*] Create secret $K8S_SECRET_NAME on cluster"
-#kubectl create secret tls $K8S_SECRET_NAME \
-#   --cert=$FOLDER_NAME/tls.crt \
-#   --key=$FOLDER_NAME/tls.key \
-#   --namespace $K8S_NAMESPACE
+echo "[*] Create secret $K8S_SECRET_NAME on cluster"
+kubectl create secret tls $K8S_SECRET_NAME \
+   --cert=$FOLDER_NAME/tls.crt \
+   --key=$FOLDER_NAME/tls.key \
+   --namespace $K8S_NAMESPACE
 
-#echo "[*] Remove temporary folder"
-#rm -rf $FOLDER_NAME
+echo "[*] Remove temporary folder"
+rm -rf $FOLDER_NAME
 
 # ****************************************************************
