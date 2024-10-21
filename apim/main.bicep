@@ -12,6 +12,7 @@ var apim_snet_ip_address = '10.10.1.32/27'
 var nsg_name = 'nsg-apim-test-we-01'
 var pip_name = 'pip-agw-test-we-01'
 var subscriptionId = subscription().subscriptionId
+var vm_name = 'vm-linux-test-we-01'
 var vnet_name = 'vnet-test-we-01'
 
 resource rsg 'Microsoft.Resources/resourceGroups@2023-07-01' = {
@@ -282,3 +283,42 @@ module agw 'br/public:avm/res/network/application-gateway:0.1.0' = {
   }
 }
 
+module vm 'br/public:avm/res/compute/virtual-machine:0.6.0' = {
+  scope: rsg
+  name: '${vm_name}-${substring(uniqueString(dateTime),0,4)}'
+  params: {
+    name: vm_name
+    adminUsername: 'localAdminUser'
+    imageReference: {
+      offer: '0001-com-ubuntu-server-jammy'
+      publisher: 'Canonical'
+      sku: '22_04-lts-gen2'
+      version: 'latest'
+    }
+    nicConfigurations: [
+      {
+        ipConfigurations: [
+          {
+            name: 'ipconfig01'
+            pipConfiguration: {
+              name: 'pip-vm-test-we-01'
+            }
+            subnetResourceId: vnet.outputs.subnetResourceIds[2]
+          }
+        ]
+        nicSuffix: '-nic-01'
+      }
+    ]
+    osDisk: {
+      diskSizeGB: 100
+      managedDisk: {
+        storageAccountType: 'StandardSSD_LRS'
+      }
+    }
+    osType: 'Linux'
+    vmSize: 'Standard_DS2_v2'
+    zone: 0
+    adminPassword: 'Test1234!'
+    encryptionAtHost: false //Recommended to be true, but because this is for test purpose it will be false.
+  }
+}
